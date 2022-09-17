@@ -29,11 +29,9 @@ class Advert implements PostInterface
 
     public function getTitle(): string
     {
-        $livingSpaceType = $this->livingSpace->getType();
-
-        if ($livingSpaceType == 'dom') {;
+        if ($this->livingSpace instanceof House) {;
             return $this->formatHouseTitle();
-        } elseif ($livingSpaceType == 'kvartira') {
+        } elseif ($this->livingSpace instanceof Flat) {
             return $this->formatFlatTitle();
         }
 
@@ -59,9 +57,9 @@ class Advert implements PostInterface
         $saleText = "Продам {$this->livingSpace->getRooms()}-{$text} за {$this->getFormatStringPrice()} тг";
         $rentText = "Сдам {$this->livingSpace->getRooms()}-{$text} за {$this->getFormatStringPrice()} тг в {$this->category->getRentPeriod()}";
 
-        if ($this->category->getName() == 'sale') {
+        if ($this->category instanceof Sale) {
             return $saleText;
-        } elseif ($this->category->getName() == 'rent') {
+        } elseif ($this->category instanceof Rent) {
             return $rentText;
         }
 

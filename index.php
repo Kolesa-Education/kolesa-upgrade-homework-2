@@ -11,7 +11,8 @@ $adverts = [
     ['rooms' => 1, 'category' => 'rent', 'price' => 15000, 'type' => 'kvartira', 'period' => 'day'],
 ];
 
+$advertFactory = new AdvertFactory();
+
 foreach ($adverts as $advert) {
-    $advertFactory = new AdvertFactory();
     echo $advertFactory->createAdvert($advert);
 }

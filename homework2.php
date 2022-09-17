@@ -36,7 +36,7 @@ class Advert
     }
 
     public function getTitle($category, $rooms, $type, $price, $period=NULL){
-        return (is_null($period) and $type=="дом") ? " • ".$category." ".$rooms.$type." за ".$price." тг" : " • ".$category." ".$rooms.$type." за ".$price." тг в ".$period;       
+        return is_null($period) ? " • ".$category." ".$rooms.$type." за ".$price." тг" : " • ".$category." ".$rooms.$type." за ".$price." тг в ".$period;       
     }
 
 }

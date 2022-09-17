@@ -46,9 +46,8 @@ class AdvertFactory
             }
 
             $advert = new Advert($advert['price'], $category, $livingSpace);
-            $title = $advert->getTitle();
 
-            return $title . '<br>';
+            return $advert;
         } catch (Exception $e) {
             return 'Error: ' . $e->getMessage() . '<br>';
         }

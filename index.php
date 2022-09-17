@@ -14,5 +14,6 @@ $adverts = [
 $advertFactory = new AdvertFactory();
 
 foreach ($adverts as $advert) {
-    echo $advertFactory->createAdvert($advert);
+    $advert = $advertFactory->createAdvert($advert);
+    echo $advert->getTitle() . '<br>';
 }

@@ -14,6 +14,7 @@
     enum Period: string{
         case Month = "month";
         case Day = "day";
+        case None = " ";
 
     }
 ?>

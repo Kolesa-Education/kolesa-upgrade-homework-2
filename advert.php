@@ -100,7 +100,7 @@ include 'additions.php';
 		private int $rooms;
 		private Type $type;
 		
-		function __construct(int $rooms=null, Category $category=null, int $price=null, Type $type=null, Period $period=null)
+		function __construct(int $rooms=null, Category $category=null, int $price=null, Type $type=null, Period $period=Period::None)
 		{
 			parent::__construct(category: $category, price: $price, period: $period);
 			$this->setRooms($rooms);
@@ -108,7 +108,25 @@ include 'additions.php';
 		}
 
 		function getTitle():string{
-			return "";
+			$category = $this->getCategory()===Category::Rent ? "Сдаю " : "Продаю ";
+			$rooms = $this->getRooms() . '-';
+			$type =  $this->getType()===Type::Flat ? "комнатную квартиру" : "комнатный дом";
+			$price = ' за ' . $this->formatString() . " тг в " ;
+			$period = $this->getPeriod()===Period::Month ? "месяц" : "сутки";
+			return $category . $rooms . $type . $price . $period;
+		}
+
+		function formatString():string{
+			$numlen = strlen((string)$this->getPrice());
+			$formated_num = number_format($this->getPrice(), 0);
+			$num_array = explode(",", $formated_num);
+			if($numlen <= 9 && $numlen > 6){
+				return $num_array[1][0] != 0 ? $num_array[0] . "." . $num_array[1][0] . " млн." : $num_array[0] . " млн.";
+			}elseif($numlen > 3){
+				return $num_array[0] . " " . $num_array[1];
+			}else{
+				return $this->price;
+			}
 		}
 
 		function conteinerize(): array

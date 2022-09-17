@@ -20,20 +20,28 @@ $adverts = [
 ];
 
 foreach ($adverts as $advert) {
-    if ($advert['category'] == 'sale') {
-        $category = new Sale();
-    } elseif ($advert['category'] == 'rent') {
-        $category = new Rent($advert['period']);
+    try {
+        if ($advert['category'] == 'sale') {
+            $category = new Sale();
+        } elseif ($advert['category'] == 'rent') {
+            $category = new Rent($advert['period']);
+        } else {
+            throw new Exception('Category not exists');
+        }
+
+        if ($advert['type'] == 'dom') {
+            $livingSpace = new House($advert['rooms']);
+        } elseif ($advert['type'] == 'kvartira') {
+            $livingSpace = new Flat($advert['rooms']);
+        } else {
+            throw new Exception('Living space type not exists');
+        }
+
+        $advert = new Advert($advert['price'], $category, $livingSpace);
+        $title = $advert->getTitle();
+
+        echo $title . '<br>';
+    } catch (Exception $e) {
+        echo 'Error: ' . $e->getMessage() . '<br>';
     }
-
-    if ($advert['type'] == 'dom') {
-        $livingSpace = new House($advert['rooms']);
-    } elseif ($advert['type'] == 'kvartira') {
-        $livingSpace = new Flat($advert['rooms']);
-    }
-
-    $advert = new Advert($advert['price'], $category, $livingSpace);
-    $title = $advert->getTitle();
-
-    echo $title . '<br>';
 }

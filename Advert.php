@@ -3,7 +3,7 @@
 
 namespace Advert;
 
-include 'PostInterface.php';
+include_once 'PostInterface.php';
 
 class Advert implements PostInterface
 {
@@ -31,26 +31,42 @@ class Advert implements PostInterface
 
     public function getTitle(): string
     {
-        $title = "";
-
-        $categoryName = $this->category->getName();
         $livingSpaceType = $this->livingSpace->getType();
 
-        if ($livingSpaceType == 'dom') {
-            $title = "{$this->livingSpace->getRooms()}-комнатный дом за {$this->getFormatStringPrice()} тг";
+        if ($livingSpaceType == 'dom') {;
+            return $this->formatHouseTitle();
         } elseif ($livingSpaceType == 'kvartira') {
-            $title = "{$this->livingSpace->getRooms()}-комнатную квартиру за {$this->getFormatStringPrice()} тг";
+            return $this->formatFlatTitle();
         }
 
-        if ($categoryName == 'sale') {
-            $begin = 'Продам';
-            $title = $begin . ' ' . $title;
-        } elseif ($categoryName == 'rent') {
-            $begin = 'Сдам ';
-            $end = "в {$this->category->getRentPeriod()}";
-            $title = $begin . ' ' . $title . ' ' . $end;
+        return 'Invalid living space type';
+    }
+
+    public function formatHouseTitle(): string
+    {
+        $text = 'комнатный дом';
+
+        return $this->formatTitle($text);
+    }
+
+    public function formatFlatTitle(): string
+    {
+        $text = 'комнатную квартиру';
+
+        return $this->formatTitle($text);
+    }
+
+    public function formatTitle(string $text)
+    {
+        $saleText = "Продам {$this->livingSpace->getRooms()}-{$text} за {$this->getFormatStringPrice()} тг";
+        $rentText = "Сдам {$this->livingSpace->getRooms()}-{$text} за {$this->getFormatStringPrice()} тг в {$this->category->getRentPeriod()}";
+
+        if ($this->category->getName() == 'sale') {
+            return $saleText;
+        } elseif ($this->category->getName() == 'rent') {
+            return $rentText;
         }
 
-        return $title;
+        return 'Invalid category type';
     }
 }

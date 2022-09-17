@@ -16,7 +16,7 @@ class Advert
     }
 
     function getRooms(){
-        return $this->rooms;
+        return $this->type=="дом" ? $this->rooms."-комнатный " : $this->rooms."-комнатную ";
     }
     
     public function getType(){
@@ -36,7 +36,7 @@ class Advert
     }
 
     public function getTitle($category, $rooms, $type, $price, $period=NULL){
-        return (is_null($period) and $type=="дом") ? " • ".$category." ".$rooms."-комнатный ".$type." за ".$price." тг" : " • ".$category." ".$rooms."-комнатную ".$type." за ".$price." тг в ".$period;       
+        return (is_null($period) and $type=="дом") ? " • ".$category." ".$rooms.$type." за ".$price." тг" : " • ".$category." ".$rooms.$type." за ".$price." тг в ".$period;       
     }
 
 }

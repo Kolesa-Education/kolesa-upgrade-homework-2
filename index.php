@@ -2,7 +2,6 @@
 
 include_once 'AdvertFactory.php';
 
-use Advert\Advert;
 use Advert\AdvertFactory;
 
 $adverts = [

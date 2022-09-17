@@ -11,13 +11,11 @@ include_once 'Sale.php';
 include_once 'periods.php';
 
 use Exception;
-use stdClass;
 
 class AdvertFactory
 {
     public function createAdvert(array $advert): Advert
     {
-
             if (!is_numeric($advert['price'])) {
                 throw new Exception('Price should be a numeric');
             }

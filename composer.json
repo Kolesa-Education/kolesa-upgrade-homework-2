@@ -1,0 +1,22 @@
+{
+    "name": "kudaiberdy/kolesa-upgrade-homework-2",
+    "description": "homework",
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        },
+        "files": [
+            "src/advertCreator.php"
+        ]
+    },
+    "authors": [
+        {
+            "name": "Kudaiberdy",
+            "email": "kudaiberdy.shagirov@gmail.com"
+        }
+    ],
+    "require-dev": {
+        "symfony/var-dumper": "^6.1",
+        "squizlabs/php_codesniffer": "^3.7"
+    }
+}

@@ -2,9 +2,6 @@
 
 namespace App\Adverts;
 
-use App\Adverts\Advert;
-use App\Estates\Estate;
-
 class RentAdvert extends Advert
 {
     private string $period;

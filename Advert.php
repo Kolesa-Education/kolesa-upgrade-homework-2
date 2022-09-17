@@ -52,7 +52,7 @@ class Advert implements PostInterface
         return $this->formatTitle($text);
     }
 
-    public function formatTitle(string $text)
+    public function formatTitle(string $text): string
     {
         $saleText = "Продам {$this->livingSpace->getRooms()}-{$text} за {$this->getFormatStringPrice()} тг";
         $rentText = "Сдам {$this->livingSpace->getRooms()}-{$text} за {$this->getFormatStringPrice()} тг в {$this->category->getRentPeriod()}";

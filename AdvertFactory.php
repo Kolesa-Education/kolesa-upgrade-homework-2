@@ -14,7 +14,7 @@ use Exception;
 
 class AdvertFactory
 {
-    public function createAdvert(array $advert)
+    public function createAdvert(array $advert): Advert
     {
         try {
             if (!is_numeric($advert['price'])) {

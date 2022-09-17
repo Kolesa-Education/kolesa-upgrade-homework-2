@@ -14,7 +14,7 @@ use Exception;
 
 class AdvertFactory
 {
-    public function createAdvert(array $advert): Advert
+    public function createAdvert(array $advert)
     {
         try {
             if (!is_numeric($advert['price'])) {
@@ -45,11 +45,9 @@ class AdvertFactory
                 throw new Exception('Invalid living space');
             }
 
-            $advert = new Advert($advert['price'], $category, $livingSpace);
-
-            return $advert;
+            return new Advert($advert['price'], $category, $livingSpace);
         } catch (Exception $e) {
-            return 'Error: ' . $e->getMessage() . '<br>';
+            echo 'Error: ' . $e->getMessage() . '<br>';
         }
     }
 }

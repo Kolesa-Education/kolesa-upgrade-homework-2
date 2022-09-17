@@ -15,5 +15,6 @@ $advertFactory = new AdvertFactory();
 
 foreach ($adverts as $advert) {
     $advert = $advertFactory->createAdvert($advert);
-    echo $advert->getTitle() . '<br>';
+
+    if ($advert && !is_string($advert)) echo $advert->getTitle() . '<br>';
 }

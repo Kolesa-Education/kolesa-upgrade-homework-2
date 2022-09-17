@@ -20,13 +20,11 @@ class Advert implements PostInterface
 
     public function getFormatStringPrice(): string
     {
-        $price = $this->price;
-
-        if ($price >= 1000000) {
-            $price = $this->price / 1000000 . ' млн.';
+        if ($this->price >= 1000000) {
+            return $this->price / 1000000 . ' млн.';
         }
 
-        return $price;
+        return number_format($this->price, 0, '', ' ');
     }
 
     public function getTitle(): string

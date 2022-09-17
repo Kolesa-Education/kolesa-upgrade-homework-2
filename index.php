@@ -2,6 +2,7 @@
 
 include_once 'AdvertFactory.php';
 
+use Advert\Advert;
 use Advert\AdvertFactory;
 
 $adverts = [
@@ -14,7 +15,10 @@ $adverts = [
 $advertFactory = new AdvertFactory();
 
 foreach ($adverts as $advert) {
-    $advert = $advertFactory->createAdvert($advert);
-
-    if ($advert && !is_string($advert)) echo $advert->getTitle() . '<br>';
+    try {
+        $advert = $advertFactory->createAdvert($advert);
+        echo $advert->getTitle() . '<br>';
+    } catch (Exception $e) {
+        echo 'Error: ' . $e->getMessage() . '<br>';
+    }
 }

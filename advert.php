@@ -15,13 +15,12 @@ abstract class Advert
     protected $type;
     protected $period;
 
-    public function __construct($rooms, $category, $price, $type, $period = null)
+    public function __construct($rooms, $category, $price, $type)
     {
         $this->setRooms($rooms);
         $this->setCategory($category);
         $this->setPrice($price);
         $this->setType($type);
-        $this->setPeriod($period);
     }
 
     /**
@@ -103,6 +102,20 @@ abstract class Advert
         return $this->type;
     }
 
+
+    abstract public function getTitle();
+}
+
+;
+
+class SaleAndRent extends Advert
+{
+    public function __construct($rooms, $category, $price, $type, $period = null)
+    {
+        parent::__construct($rooms, $category, $price, $type);
+        $this->setPeriod($period);
+    }
+
     /**
      * @param mixed|null $period
      */
@@ -124,14 +137,6 @@ abstract class Advert
     {
         return $this->period;
     }
-
-    abstract public function getTitle();
-}
-
-;
-
-class SaleAndRent extends Advert
-{
     public function getTitle()
     {
         if (!isset($this->period)) {

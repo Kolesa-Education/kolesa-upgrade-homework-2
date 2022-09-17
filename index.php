@@ -8,23 +8,20 @@ abstract class Advert
 #абстрактный класс, в котором объявил все поля; конструктор, который наследуют 2 дочерних класса; геттеры и сеттеры;
 # + метод по выбору дня через switch/case
 {
-    protected int $rooms;           #кол-во комнат
-    protected string $category;     #категория на продажу или аренду
-    protected int $price;           #Цена
-    protected string $type;         #Тип жилья (Квартира/Дом)
-    protected string $period;       #Период в случае если это аренда
+    protected $rooms;           #кол-во комнат
+    protected $category;     #категория на продажу или аренду
+    protected $price;           #Цена
+    protected $type;         #Тип жилья (Квартира/Дом)
+    protected $period;       #Период в случае если это аренда
 
-    function __construct(int $rooms, string $category, int $price, string $type,$period=false) {
+    function __construct(...$args) {
         #Конструктор, где помимо присвоения, я обрабатываю отсутствие периода, если происходит покупка а не аренда
-        $this->rooms = $rooms;
-        $this->category = $category;
-        $this->price = $price;
-        $this->type = $type;
-        if (!is_null($period)){
-            $this->period = $period;
-            } 
-   }
-
+        $this->rooms = $args[0];
+        $this->category = $args[1];
+        $this->price = $args[2];
+        $this->type = $args[3];
+        $this->period = $args[4];
+    }
    #геттеры и сеттеры, лишним не будет
    public function getRooms(){
     return $this->rooms;
@@ -90,8 +87,8 @@ abstract class Advert
 }
 class flatAdvert extends Advert{
  #Класс оъявлений для квартиры, включает в себя и покупку, и аренду   
-    function __construct(int $rooms, string $category, int $price, string $type,$period) {
-        parent::__construct($rooms,$category,$price,$type,$period);   
+    function __construct(...$args) {
+        parent::__construct(...$args);   
    }
     
     function getTitle(){
@@ -106,8 +103,8 @@ class flatAdvert extends Advert{
 
 class houseAdvert extends Advert{
     #Класс объявлений для дома, включает в себя и покупку, и аренду
-    function __construct(int $rooms, string $category, int $price, string $type,$period) {
-        parent::__construct($rooms,$category,$price,$type,$period);   
+    function __construct(...$args) {
+        parent::__construct(...$args);   
    }
     
 
@@ -133,11 +130,22 @@ class houseAdvert extends Advert{
 foreach ($adverts as $innerarr) {
     #В зависимости от значения ключа, вызываем инициализацию соответствующего класса и присвоением полей
     if ($innerarr['type'] == "kvartira"){
-        $FlatOrHouseIDK = new flatAdvert($innerarr['rooms'],$innerarr['category'],$innerarr['price'],$innerarr['type'],$innerarr['period']);
-    }
+        if(isset($innerarr['period'])){
+            $FlatOrHouseIDK = new flatAdvert($innerarr['rooms'],$innerarr['category'],$innerarr['price'],$innerarr['type'],$innerarr['period']);
+      
+        }
+        else{
+            $FlatOrHouseIDK = new flatAdvert($innerarr['rooms'],$innerarr['category'],$innerarr['price'],$innerarr['type']);
+        }
+        }
     elseif ($innerarr['type'] == "dom"){
-        $FlatOrHouseIDK = new houseAdvert($innerarr['rooms'],$innerarr['category'],$innerarr['price'],$innerarr['type'],$innerarr['period']);
-    };
+        if(isset($innerarr['period'])){
+            $FlatOrHouseIDK = new houseAdvert($innerarr['rooms'],$innerarr['category'],$innerarr['price'],$innerarr['type'],$innerarr['period']);
+      
+        }
+        else{
+            $FlatOrHouseIDK = new houseAdvert($innerarr['rooms'],$innerarr['category'],$innerarr['price'],$innerarr['type']);
+        }};
 
 #Вызываем наш долгожданный метод и радуемся жизни
 $FlatOrHouseIDK->getTitle();}

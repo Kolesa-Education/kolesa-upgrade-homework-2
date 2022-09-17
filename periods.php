@@ -1,3 +1,6 @@
 <?php
 
-const PERIODS = array('day', 'month');
+const PERIODS = array(
+    'day',
+    'month',
+);

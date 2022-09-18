@@ -1,4 +1,5 @@
 <?php
+
 header('Content-type: text/plain');
 
 abstract class Advert
@@ -12,34 +13,42 @@ abstract class Advert
     {
         $this->rooms = $rooms;
     }
+
     function getRooms()
     {
         return $this->rooms;
     }
+
     function setCategory($category)
     {
         $this->category = $category;
     }
+
     function getCategory()
     {
         return $this->category;
     }
+
     function setPrice($price)
     {
         $this->price = $price;
     }
+
     function getPrice()
     {
         return $this->price;
     }
+
     function setType($type)
     {
         $this->type = $type;
     }
+
     function getType()
     {
         return $this->type;
     }
+
     abstract public function getTitle(): string;
 
 
@@ -50,8 +59,8 @@ class saleAdvert extends Advert
     public function __construct(int $rooms, float $price, string $type)
     {
         $this->rooms = $rooms;
-        $this->price = $price>1000000 ? ($price/1000000): number_format($price, 0);
-        $this->type  = $type;
+        $this->price = $price > 1000000 ? ($price / 1000000) : number_format($price, 0);
+        $this->type = $type;
     }
 
     public function getTitle(): string
@@ -71,7 +80,7 @@ class rentAdvert extends Advert
     public function __construct(int $rooms, float $price, string $type, string $period)
     {
         $this->rooms = $rooms;
-        $this->price = number_format($price, 0 , ' ' , ' ' );
+        $this->price = number_format($price, 0, ' ', ' ');
         $this->type = $type;
         $this->period = $period;
     }
@@ -80,6 +89,7 @@ class rentAdvert extends Advert
     {
         $this->period = $period;
     }
+
     function getPeriod()
     {
         return $this->period;

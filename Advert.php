@@ -22,9 +22,9 @@ abstract class Advert
     function formatCategoryToHuman(): string
     {
         if ($this->category === 'sale') {
-            return 'Сдам ';
-        } else {
             return 'Продам ';
+        } else {
+            return 'Сдам ';
         }
     }
 

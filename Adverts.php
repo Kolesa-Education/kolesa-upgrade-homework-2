@@ -1,6 +1,6 @@
 <?php
-
-abstract class Adverts implements Adverts_I
+require_once "Adverts_I.php";
+class Adverts implements Adverts_I
 {
     private $arr;
     private $rent = [];

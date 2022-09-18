@@ -1,54 +1,40 @@
 <?php
+
+declare(strict_types=1);
+
 require_once("InterfaceAdvert.php");
 
 abstract class AbstractAdvert implements InterfaceAdvert
 {
 
 private int $id;
-private string $category;
-private int $price;
-private string $type;
-private int $rooms;
+protected string $type;
+protected int $price;
+protected string $category;
+protected string $period;
 protected string $title = "";
 
-//Инициализирует переменные при создании
-    function __construct(int $id, string $category, int $price, string $type, int $rooms) {
+    //Инициализирует переменные при создании
+    /**
+     * @param array $advertData
+     * @param int $id
+     */
+    public function __construct(int $id, array $advertData) {
         $this->id = $id;
-        $this->setCategory($category);
-        $this->setPrice($price);
-        $this->setType($type);
-        $this->setRooms($rooms);
-        $this->generateTitle();
-    }
-
-    //Генерирует заголовок
-    public function generateTitle() {
-        if ($this->category == "sale"){
-            $this->title = "Продам ";
-        } else {
-            $this->title = "Сдам ";
-        }
-
-        if ($this->type == "kvartira"){
-            $this->title .= $this->rooms . "-комнатную квартиру за ";
-        } else {
-            $this->title .= $this->rooms . "-комнатный дом за ";
-        }
-
-        switch (true) {
-            case $this->price > 999999 && $this->price < 100000000:
-                $this->title .= $this->price/1000000 . " млн. тг ";
-                break;
-            case $this->price > 100000000:
-                $this->title .= $this->price/100000000 . " мрд. тг ";
-                break;
-            default:
-                $this->title .= $this->price . " тг";
+        $this->setType($advertData["type"]);
+        $this->setPrice($advertData["price"]);
+        $this->setCategory($advertData["category"]);
+        if (isset($advertData["period"])){
+            $this->setPeriod($advertData["period"]);
         }
     }
 
+    protected function generateTitle() {
+        //Переопределяется в дочерних классах
+    }
 
-    //ДАЛЬШЕ ИДУТ GETTER-ы и SETTER-ы, ничего интересного
+
+    //ДАЛЬШЕ ИДУТ GETTER-ы и SETTER-ы, ничего интересного. В сеттерах запускается функция generateTitle()
 
     /**
      * @return int
@@ -56,38 +42,6 @@ protected string $title = "";
     public function getId(): int
     {
         return $this->id;
-    }
-
-    /**
-     * @return string
-     */
-    public function getCategory(): string
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param string $category
-     */
-    public function setCategory(string $category): void
-    {
-        $this->category = $category;
-    }
-
-    /**
-     * @return int
-     */
-    public function getPrice(): int
-    {
-        return $this->price;
-    }
-
-    /**
-     * @param int $price
-     */
-    public function setPrice(int $price): void
-    {
-        $this->price = $price;
     }
 
     /**
@@ -104,22 +58,58 @@ protected string $title = "";
     public function setType(string $type): void
     {
         $this->type = $type;
+        $this->generateTitle();
     }
 
     /**
      * @return int
      */
-    public function getRooms(): int
+    public function getPrice(): int
     {
-        return $this->rooms;
+        return $this->price;
     }
 
     /**
-     * @param int $rooms
+     * @param int $price
      */
-    public function setRooms(int $rooms): void
+    public function setPrice(int $price): void
     {
-        $this->rooms = $rooms;
+        $this->price = $price;
+        $this->generateTitle();
+    }
+
+    /**
+     * @return string
+     */
+    public function getCategory(): string
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param string $category
+     */
+    public function setCategory(string $category): void
+    {
+        $this->category = $category;
+        $this->generateTitle();
+    }
+
+    /**
+     * @return string
+     */
+    public function getPeriod(): string
+    {
+        return $this->period;
+    }
+
+    /**
+     * @param string $period
+     */
+    public function setPeriod(string $period): void
+    {
+        $this->period = $period;
+        $this->generateTitle();
     }
 
     /**
@@ -127,16 +117,9 @@ protected string $title = "";
      */
     public function getTitle(): string
     {
+        if ($this->title == ""){
+            $this->generateTitle();
+        }
         return $this->title;
     }
-
-    /**
-     * @param string $title
-     */
-    protected function setTitle(string $title): void
-    {
-        $this->title = $title;
-    }
-
-
 }

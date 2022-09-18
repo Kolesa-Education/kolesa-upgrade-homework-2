@@ -23,6 +23,7 @@ abstract class Advert
         $this->period =  $args[4];
         }
     }
+    
    #геттеры и сеттеры, лишним не будет
    public function getRooms(){
     return $this->rooms;
@@ -117,7 +118,30 @@ class houseAdvert extends Advert{
             echo "Сдам $this->rooms-комнатный дом за $this->price тенге в " .countPeriodWord() . PHP_EOL;
         }
     }}
-
+    function number_format_short( $num, $okr = 1 ) {
+        #Округление чисел (регулярные выражения? не, не слышал)
+        if ($num < 900) {
+            $n_format = number_format($num, $okr);
+            $suffix = '';
+        } else if ($num < 900000) {
+            $n_format = number_format($num / 1000, $okr);
+            $suffix = ' тысяч';
+        } else if ($num < 900000000) {
+            $n_format = number_format($num / 1000000, $okr);
+            if($num >= 1000000 and $num<2000000){
+                echo $num;
+                $suffix = ' миллион';
+            }
+            else if ($num >= 2000000){
+            $suffix = ' миллионов';
+            }
+        };
+        if ( $okr > 0 ) {
+            $dotzero = '.' . str_repeat( '0', $okr );
+            $n_format = str_replace( $dotzero, '', $n_format );
+        }
+        return $n_format . $suffix;
+    }
 
     #Стартовый словарь/ассоциативный массив
     $adverts = [
@@ -132,20 +156,20 @@ foreach ($adverts as $innerarr) {
     #В зависимости от значения ключа, вызываем инициализацию соответствующего класса и присвоением полей
     if ($innerarr['type'] == "kvartira"){
         if(isset($innerarr['period'])){
-            $FlatOrHouseIDK = new flatAdvert($innerarr['rooms'],$innerarr['category'],$innerarr['price'],$innerarr['type'],$innerarr['period']);
+            $FlatOrHouseIDK = new flatAdvert($innerarr['rooms'],$innerarr['category'],number_format_short($innerarr['price']),$innerarr['type'],$innerarr['period']);
       
         }
         else{
-            $FlatOrHouseIDK = new flatAdvert($innerarr['rooms'],$innerarr['category'],$innerarr['price'],$innerarr['type']);
+            $FlatOrHouseIDK = new flatAdvert($innerarr['rooms'],$innerarr['category'],number_format_short($innerarr['price']),$innerarr['type']);
         }
         }
     elseif ($innerarr['type'] == "dom"){
         if(isset($innerarr['period'])){
-            $FlatOrHouseIDK = new houseAdvert($innerarr['rooms'],$innerarr['category'],$innerarr['price'],$innerarr['type'],$innerarr['period']);
+            $FlatOrHouseIDK = new houseAdvert($innerarr['rooms'],$innerarr['category'],number_format_short($innerarr['price']),$innerarr['type'],$innerarr['period']);
       
         }
         else{
-            $FlatOrHouseIDK = new houseAdvert($innerarr['rooms'],$innerarr['category'],$innerarr['price'],$innerarr['type']);
+            $FlatOrHouseIDK = new houseAdvert($innerarr['rooms'],$innerarr['category'],number_format_short($innerarr['price']),$innerarr['type']);
         }};
 
 #Вызываем наш долгожданный метод и радуемся жизни

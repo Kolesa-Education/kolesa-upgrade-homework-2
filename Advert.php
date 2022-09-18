@@ -1,5 +1,4 @@
 <?php
-
 header('Content-type: text/plain');
 
 abstract class Advert
@@ -50,8 +49,6 @@ abstract class Advert
     }
 
     abstract public function getTitle(): string;
-
-
 }
 
 class saleAdvert extends Advert
@@ -60,7 +57,7 @@ class saleAdvert extends Advert
     {
         $this->rooms = $rooms;
         $this->price = $price > 1000000 ? ($price / 1000000) : number_format($price, 0);
-        $this->type = $type;
+        $this->type  = $type;
     }
 
     public function getTitle(): string
@@ -79,9 +76,9 @@ class rentAdvert extends Advert
 
     public function __construct(int $rooms, float $price, string $type, string $period)
     {
-        $this->rooms = $rooms;
-        $this->price = number_format($price, 0, ' ', ' ');
-        $this->type = $type;
+        $this->rooms  = $rooms;
+        $this->price  = number_format($price, 0, ' ', ' ');
+        $this->type   = $type;
         $this->period = $period;
     }
 

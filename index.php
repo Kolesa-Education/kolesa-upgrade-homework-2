@@ -10,6 +10,12 @@ $adverts = [
 ];
 
 foreach ($adverts as $advert) {
-    $result = new RealEstateAdvert($advert['rooms'], $advert['category'], $advert['type'], $advert['price'], $advert['period'] ?? null);
+    $result = new RealEstateAdvert(
+        $advert['rooms'],
+        $advert['category'],
+        $advert['type'],
+        $advert['price'],
+        $advert['period'] ?? null
+    );
     echo $result->getTitle() . '<br>';
 }

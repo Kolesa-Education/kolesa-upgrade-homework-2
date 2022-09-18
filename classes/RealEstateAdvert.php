@@ -6,7 +6,8 @@ class RealEstateAdvert extends Advert
 {
     private $finalTitle = '';
 
-    private function getTypeString(): void {
+    private function getTypeString(): void
+    {
         $this->finalTitle .= match ($this->type) {
             'dom' => $this->rooms . '-комнатный дом за ',
             'kvartira' => $this->rooms . '-комнатную квартиру за ',
@@ -23,7 +24,8 @@ class RealEstateAdvert extends Advert
         };
     }
 
-    private function getRentableString(): void {
+    private function getRentableString(): void
+    {
         $this->finalTitle = match ($this->period) {
             null => 'Продам ' . $this->finalTitle,
             default => 'Сдам ' . $this->finalTitle,

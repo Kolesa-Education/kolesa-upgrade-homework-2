@@ -1,6 +1,6 @@
 <?php
 
-class Adverts
+abstract class Adverts implements Adverts_I
 {
     private $arr;
     private $rent = [];
@@ -13,7 +13,7 @@ class Adverts
     }
 
 //разделить на категории
-    function arr_split()
+   public function arr_split()
     {
         foreach ($this->arr as $key) {
             if (array_search("rent", $key)) {

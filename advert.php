@@ -74,32 +74,19 @@ class Rent extends Advert implements Title
 
 function readiblePrice(float $price): string
 {
-    if ($price < 1000) {
+    if ($price < 1000000) {
         return (string)$price;
     }
 
-    if ($price < 1000000) {
-        $price = round($price / 1000, 1);
-        if ($price % 10 === 0) {
-            return number_format($price) . ' тыс';
-        }
-        return number_format($price, 1) . ' тыс';
-    }
-
     if ($price >= 1000000 && $price < 1000000000) {
-        $price = $price / 1000000;
-        if ($price % 10 == 0) {
-            return number_format($price) . ' млн';
-        }
-        return number_format($price, 1) . ' млн';
+        $price = round($price / 1000000, 1);
+
+        return "{$price} млн";
     }
 
     if ($price >= 1000000000 && $price < 1000000000000) {
-        $price = $price / 1000000000;
-        if ($price % 10 == 0) {
-            return number_format($price) . ' млрд';
-        }
-        return number_format($price, 1) . ' млрд';
+        $price = round($price / 1000000000);
+        return "{$price} млрд";
     }
 
     return sprintf('%d%s', floor($price / 1000000000000), ' трлн+');

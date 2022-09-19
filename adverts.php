@@ -2,8 +2,8 @@
 
 abstract class Advert
 {
-    protected $rooms;
-    protected $price;
+    protected int $rooms;
+    protected float $price;
 
     public function setRooms(int $rooms)
     {
@@ -30,6 +30,7 @@ class Sale extends Advert implements Title
 
 class Rent extends Advert implements Title
 {
+    protected string $period;
     public function getTitle()
     {
         print_r("Сдам {$this->rooms}-комнатный дом за {$this->price} в мес\n");

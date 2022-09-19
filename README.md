@@ -1,31 +1,25 @@
-# kolesa-upgrade-homework-2
+## kolesa-upgrade-homework-1
 
-Дедлайн 21.09 среда 23:59
+### Prerequisite
 
-#### Дан масив состоящий из элементов с данными объявления.
+Install [docker-compose](https://docs.docker.com/compose/install/)
 
+### Details
+
+1. Class `Advert` --> represents the abstract representation of object advertisement. It has two child classes such as `RentAdvert` and `SaleAdvert` which are objects with specific category. As the project grow, we can easily add new categories.
+
+2. Interface `ObjectToAdvert` --> it as anything (that can be advertised) that implements `getProportyMsg()`. The main reason for implmentation of this interface is that we can further scale up our catolog by adding new classes that can be thought as object to advert. (Note: now we have only class `Home` and `Apartment`)
+
+3. Utility classes `PriceTag` and `PeriodTag` --> enables the elasticty in modifiying the price and period parts of title.
+
+4. Lastly class `Distributor` --> distributes elements in given array based on the category and on the type of advert object.
+
+### Run
+
+The main logic can be found in the `./src/public/index.php`. In order to run and test go to `docker` repository and run:
+
+```bash
+docker-compose up
 ```
-$adverts = [
-    ['rooms' => 5, 'category' => 'sale', 'price' => 55000000, 'type' => 'dom'],
-    ['rooms' => 2, 'category' => 'sale', 'price' => 21500000, 'type' => 'kvartira'],
-    ['rooms' => 2, 'category' => 'rent', 'price' => 200000, 'type' => 'kvartira', 'period' => 'month'],
-    ['rooms' => 1, 'category' => 'rent', 'price' => 150000, 'type' => 'kvartira', 'period' => 'day'],
-];
-```
 
-Требования:
-
-Из элементов предоставленного массива нужно создать объекты c классом Advert,
-в котором должен быть метод getTitle(), который выводит заголовок (указанный в примере) объявления в зависимости от параметров.
-И необходимо вывести в цикле заголовки всех объявлений массива.
-
-Пример вывода заголовка объявления:
- - Продам 5-комнатный дом за 55 млн. тг
- - Продам 2-комнатную квартиру за 21.5 млн. тг
- - Сдам 2-комнатную квартиру за 200 000 тг в месяц
- - Сдам 1-комнатную квартиру за 150 000 тг в сутки""
-
-
-Дополнительное задание для тех кто хочет сделать больше:
-1. Использовано наследование, абстрактный класс, интерейс.
-2. Добавлены другие классы для категори и параметров объявления, возможности объектов расширены, добавлены дополнительные методы."
+The local server will be running on the address of `localhost:8000`

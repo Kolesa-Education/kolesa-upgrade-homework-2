@@ -76,7 +76,7 @@ $adverts = [
     ['rooms' => 1, 'category' => 'rent', 'price' => 150000, 'type' => 'kvartira', 'period' => 'day'],
 ];
 
-$houseAdverts = array();
+$houseAdverts = [];
 
 foreach ($adverts as $item) {
     if (!isset($item['period'])) {
@@ -84,15 +84,15 @@ foreach ($adverts as $item) {
     }
     switch ($item['type']) {
         case "dom":
-            $object = new CottageAdvert($item['rooms'], $item['category'], $item['price'], $item['period']);
+            $advert = new CottageAdvert($item['rooms'], $item['category'], $item['price'], $item['period']);
             break;
         case "kvartira":
-            $object = new FlatAdvert($item['rooms'], $item['category'], $item['price'], $item['period']);
+            $advert = new FlatAdvert($item['rooms'], $item['category'], $item['price'], $item['period']);
             break;
     }
-    $houseAdverts[] = $object;
+    $houseAdverts[] = $advert;
 }
 
 foreach ($houseAdverts as $item) {
-    echo sprintf("%s\n", $item->getTitle());
+    echo sprintf("%s\n<br>", $item->getTitle());
 }

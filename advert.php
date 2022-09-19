@@ -29,16 +29,15 @@ class Sale extends Advert implements Title
 {
     public function getTitle()
     {
-        print_r("============\n");
         if ($this->type === "kvartira") {
             print_r("Продам квартиру" . PHP_EOL);
         } else {
             print_r("Продам дом" . PHP_EOL);
         }
-        print_r("Количество комнат: {$this->rooms}." . PHP_EOL);
+        print_r("Количество комнат: {$this->rooms}" . PHP_EOL);
         $newPrice = readiblePrice($this->price);
         print_r("Цена: {$newPrice} тг." . PHP_EOL);
-        print_r("============\n");
+        print_r("============" . PHP_EOL);
     }
 }
 
@@ -52,17 +51,16 @@ class Rent extends Advert implements Title
     }
     public function getTitle()
     {
-        print_r("============\n");
         if ($this->type === "kvartira") {
-            print_r("Сдам квартиру " . $this->period . "\n");
+            print_r("Сдам квартиру " . $this->period . PHP_EOL);
         } else {
-            print_r("Сдам дом " . $this->period . "\n");
+            print_r("Сдам дом " . $this->period . PHP_EOL);
         }
-        print_r("Количество комнат: {$this->rooms}\n");
+        print_r("Количество комнат: {$this->rooms}" . PHP_EOL);
         $newPrice = readiblePrice($this->price);
         $newPeriod = $this->readiblePeriod($this->period);
-        print_r("Цена: {$newPrice} тг. {$newPeriod}");
-        print_r(PHP_EOL . "============\n");
+        print_r("Цена: {$newPrice} тг. {$newPeriod}" . PHP_EOL);
+        print_r("============" . PHP_EOL);
     }
 
     private function readiblePeriod(string $period): string

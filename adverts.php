@@ -1,6 +1,6 @@
 <?php
 
-class Advert
+abstract class Advert
 {
     protected $rooms;
     protected $price;
@@ -13,14 +13,34 @@ class Advert
     {
         $this->price = $price;
     }
+}
 
+interface Title
+{
+    public function getTitle();
+}
+
+class Sale extends Advert implements Title
+{
     public function getTitle()
     {
-        print_r("Продам {$this->rooms}-комнатный дом за {$this->price}");
+        print_r("Продам {$this->rooms}-комнатный дом за {$this->price}\n");
     }
 }
 
-$home = new Advert();
-$home->setRooms(5);
-$home->setPrice(150000);
-$home->getTitle();
+class Rent extends Advert implements Title
+{
+    public function getTitle()
+    {
+        print_r("Сдам {$this->rooms}-комнатный дом за {$this->price} в мес\n");
+    }
+}
+
+$sale = new Sale();
+$sale->setRooms(5);
+$sale->setPrice(150000);
+$sale->getTitle();
+$rent = new Rent();
+$rent->setRooms(5);
+$rent->setPrice(150000);
+$rent->getTitle();

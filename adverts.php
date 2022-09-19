@@ -175,6 +175,7 @@ function prettifyAd($ad) {
     return $adHeading;
 }
 
+
 $adverts = [
     ['rooms' => 5, 'category' => 'sale', 'price' => 55000000, 'type' => 'dom'],
     ['rooms' => 2, 'category' => 'sale', 'price' => 21500000, 'type' => 'kvartira'],

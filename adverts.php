@@ -167,7 +167,7 @@ function prettifyAd($ad) {
         $adObjPeriod = $ad->getPeriod();
         $prettifiedPeriod = match ($adObjPeriod) {
             'month' => 'в месяц',
-            'day' => 'сутки',
+            'day' => 'в сутки',
         };
         $adHeading .= " {$prettifiedPeriod}";
     }

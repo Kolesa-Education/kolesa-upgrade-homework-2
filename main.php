@@ -9,11 +9,6 @@ $adverts = [
     ['rooms' => 1, 'category' => 'rent', 'price' => 15000, 'type' => 'kvartira', 'period' => 'day'],
 ];
 
-function makeSaleAdvert()
-{
-}
-
-
 foreach ($adverts as $arr) {
     $rooms = 0;
     $category = "";

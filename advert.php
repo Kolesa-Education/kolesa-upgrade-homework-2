@@ -79,7 +79,7 @@ function readiblePrice(float $price): string
     }
 
     if ($price < 1000000) {
-        $price = $price / 1000;
+        $price = round($price / 1000, 1);
         if ($price % 10 === 0) {
             return number_format($price) . ' тыс';
         }
@@ -88,7 +88,7 @@ function readiblePrice(float $price): string
 
     if ($price >= 1000000 && $price < 1000000000) {
         $price = $price / 1000000;
-        if ($price % 10 === 0) {
+        if ($price % 10 == 0) {
             return number_format($price) . ' млн';
         }
         return number_format($price, 1) . ' млн';
@@ -96,7 +96,7 @@ function readiblePrice(float $price): string
 
     if ($price >= 1000000000 && $price < 1000000000000) {
         $price = $price / 1000000000;
-        if ($price % 10 === 0) {
+        if ($price % 10 == 0) {
             return number_format($price) . ' млрд';
         }
         return number_format($price, 1) . ' млрд';

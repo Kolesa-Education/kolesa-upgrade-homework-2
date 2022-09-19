@@ -8,24 +8,49 @@ $adverts = [
     ['rooms' => 2, 'category' => 'rent', 'price' => 200000, 'type' => 'kvartira', 'period' => 'month'],
     ['rooms' => 1, 'category' => 'rent', 'price' => 15000, 'type' => 'kvartira', 'period' => 'day'],
 ];
-$sale = new Rent();
-$sale->setType("kvartira");
-$sale->setRooms(5);
-$sale->setPrice(112512512);
-$sale->setPeriod("посуточно");
-$sale->getTitle();
 
-$home = new Sale();
-$home->setType("kvartira");
-$home->setRooms(5);
-$home->setPrice(11251251342);
-$home->getTitle();
+function makeSaleAdvert()
+{
+}
 
 
-
-// foreach ($adverts as $arr) {
-//     foreach ($arr as $key => $value) {
-//         print_r($key . "=>" . $value);
-//         print_r("\n");
-//     };
-// }
+foreach ($adverts as $arr) {
+    $rooms = 0;
+    $category = "";
+    $price = 0.0;
+    $type = "";
+    $period = "";
+    foreach ($arr as $key => $value) {
+        switch ($key) {
+            case "rooms":
+                $rooms = $value;
+                break;
+            case "category":
+                $category = $value;
+                break;
+            case "price":
+                $price = $value;
+                break;
+            case "type":
+                $type = $value;
+                break;
+            case "period":
+                $period = $value;
+                break;
+        }
+    };
+    if ($category === "rent") {
+        $rent = new Rent;
+        $rent->setRooms($rooms);
+        $rent->setPrice($price);
+        $rent->setType($type);
+        $rent->setPeriod($period === "month" ? "помесячно" : "посуточно");
+        $rent->getTitle();
+        continue;
+    }
+    $sale = new Sale;
+    $sale->setRooms($rooms);
+    $sale->setPrice($price);
+    $sale->setType($type);
+    $sale->getTitle();
+}

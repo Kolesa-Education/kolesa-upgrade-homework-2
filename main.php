@@ -7,7 +7,7 @@ $adverts = [
     ['rooms' => 1, 'category' => 'rent', 'price' => 15000, 'type' => 'kvartira', 'period' => 'day'],
 ];
 
-interface iAdvert {
+interface AdvertInterface {
     public function getTitle();
 }
 
@@ -26,7 +26,7 @@ abstract class Advert{
     }
 }
 
-class Rent extends Advert implements iAdvert{
+class Rent extends Advert implements AdvertInterface{
 
     public $period;
 
@@ -53,7 +53,7 @@ class Rent extends Advert implements iAdvert{
     }
 }
 
-class Sale extends Advert implements iAdvert{
+class Sale extends Advert implements AdvertInterface{
 
     public function getRoundPrice($price){
         if ($price>=1000000) {

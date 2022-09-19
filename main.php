@@ -7,8 +7,10 @@ $adverts = [
     ['rooms' => 1, 'category' => 'rent','price' => 15000, 'type' => 'kvartira', 'period' => 'day'],
 ];
 
-$test=new Adverts($adverts);
-$test->getTitle();
+foreach ($adverts as $arr){
+    $test=new Adverts($arr);
+    $test->getTitle() ;
+}
 
 
 

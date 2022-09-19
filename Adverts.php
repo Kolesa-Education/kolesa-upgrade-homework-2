@@ -1,55 +1,48 @@
 <?php
-require_once "Adverts_I.php";
-class Adverts implements Adverts_I
+require_once "AdvertsInterface.php";
+class Adverts
 {
     private $arr;
-    private $rent = [];
-    private $sale = [];
-    private $result = [];
-
-    function __construct($arr)
+    public function __construct($arr)
     {
         $this->arr = $arr;
     }
 
-//разделить на категории
-   public function arr_split()
+    protected function checkPrice() :string
     {
-        foreach ($this->arr as $key) {
-            if (array_search("rent", $key)) {
-                array_push($this->rent, $key);
-            } else
-                array_push($this->sale, $key);
-        }
+        if ($this->arr["price"] > 9999999)
+            return $this->arr["price"]/1000000 . " млн";
+        else return  $this->arr['price'] . " тг";
     }
 
-    function createTitleForRent()
+    protected function checkCategory() : string
     {
-        foreach ($this->rent as $item) {
-            if ($item['type'] === "kvartira" && $item['period'] == 'month')
-                array_push($this->result, "Сдам " . $item["rooms"] . " квартиру за " . $item["price"] . " в месяц ");
-            else
-                array_push($this->result, "Сдам " . $item["rooms"] . " квартиру за " . $item["price"] . " в сутки ");
-        }
+        if (array_search("rent", $this->arr)) return "Сдам";
+        else return "Продам";
     }
 
-    function createTitleForSales()
+    protected function checkPeriod(): string
     {
-        foreach ($this->sale as $item) {
-            if ($item['type'] === "dom")
-                array_push($this->result, "Продам " . $item["rooms"] . " комнатный дом за " . $item["price"] . "тг");
-            else
-                array_push($this->result, "Продам " . $item["rooms"] . "-комнатную квартиру за " . $item["price"] . "тг");
+        if (array_key_exists("period", $this->arr)) {
+            if($this->arr['period']=="month") return " в месяц";
+            else return " в сутки";
         }
+        return "";
+    }
+    protected  function checkType() : string {
+        if($this->arr["type"]=="kvartira") return "квартиру";
+        else return "дом";
+    }
+    protected function checkRooms(){
+        if($this->arr['type']=="kvartira") return "комнатную";
+        else return "комнатный";
     }
 
-    public function getTitle()
+    public function getTitle() : void
     {
-        $this->arr_split();
-        $this->createTitleForSales();
-        $this->createTitleForRent();
-        foreach ($this->result as $item) {
-            echo $item . PHP_EOL;
-        }
+        $result = $this->checkCategory() ." " .$this->arr['rooms']."-" .$this->checkRooms()." " . $this->checkType() ." за " .$this->checkPrice() .$this->checkPeriod();
+        echo $result .PHP_EOL;
     }
+
+
 }

@@ -52,27 +52,27 @@ abstract class Advert
 // creating title
 class create_title extends Advert {
     function __construct($rooms, $category, $price, $type, $period) {
-        $this->rooms = $rooms;
-        $this->category  = $category;
-        $this->price = $price;
-        $this->type = $type;
-        $this->period = $period;
+        $this->set_rooms($rooms);
+        $this->set_category($category);
+        $this->set_price($price);
+        $this->set_type($type);
+        $this->set_period($period);
     }
 
     function getTitle() {
-        if ($this->type == "dom") {
+        if ($this->get_type() == "dom") {
             $type_text = "-комнатный дом за ";
         } else {
             $type_text = "-комнатную квартиру за ";
         }
 
-        if ($this->period == "month") {
+        if ($this->get_period() == "month") {
             $period_text = " тг в месяц";
         } else {
             $period_text = " тг в сутки";
         }
 
-        if($this->price >= 1000000) {
+        if($this->get_price() >= 1000000) {
             $new_price = $this->price / 1000000;
 
             if (ctype_digit($new_price)) {
@@ -85,10 +85,10 @@ class create_title extends Advert {
             $formatted_price = number_format($this->price, 0, '.', ' ');
         }
 
-        if ($this->category == "sale") {
-            $text = "Продам " . $this->rooms . $type_text . $formatted_price . " млн. тг<br>";
+        if ($this->get_category() == "sale") {
+            $text = "Продам " . $this->get_rooms() . $type_text . $formatted_price . " млн. тг<br>";
         } else {
-            $text = "Сдам " . $this->rooms . $type_text . $formatted_price . $period_text ."<br>";
+            $text = "Сдам " . $this->get_rooms() . $type_text . $formatted_price . $period_text ."<br>";
         }
 
         return $text;

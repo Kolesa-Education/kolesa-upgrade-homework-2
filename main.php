@@ -7,6 +7,10 @@ $adverts = [
     ['rooms' => 1, 'category' => 'rent', 'price' => 15000, 'type' => 'kvartira', 'period' => 'day'],
 ];
 
+interface iAdvert {
+    public function getTitle();
+}
+
 abstract class Advert{
 
     public $type;
@@ -20,11 +24,9 @@ abstract class Advert{
         $this->category=$category;
         $this->rooms=$rooms;
     }
-
-    abstract function getTitle();
 }
 
-class Rent extends Advert{
+class Rent extends Advert implements iAdvert{
 
     public $period;
 
@@ -51,8 +53,8 @@ class Rent extends Advert{
     }
 }
 
-class Sale extends Advert{
-    
+class Sale extends Advert implements iAdvert{
+
     public function getRoundPrice($price){
         if ($price>=1000000) {
             return $price/1000000;
@@ -73,9 +75,8 @@ class Sale extends Advert{
 foreach ($adverts as $advert) {
     if (isset($advert['period'])) {
         $adv = new Rent($advert['type'], $advert['price'], $advert['category'], $advert['rooms'], $advert['period']);
-        echo $adv->getTitle();
     } else {
         $adv = new Sale($advert['type'], $advert['price'], $advert['category'], $advert['rooms']);
-        echo $adv->getTitle();
-    }  
+    }
+    echo $adv->getTitle();  
 }

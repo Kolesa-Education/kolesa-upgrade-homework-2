@@ -7,10 +7,10 @@ class SaleHouse extends House
         parent::__construct($rooms, $price, $type);
     }
 
-
     public function getTitle()
     {
-        $this->setPrice($this->getPrice()/1000000);
-        return "Продам $this->rooms -комнатный дом за $this->price млн. тг <br>";
+        $updPrice = $this->getPrice();
+        $updPrice /=1000000;
+        return "Продам $this->rooms -комнатный дом за $updPrice млн. тг <br>";
     }
 }

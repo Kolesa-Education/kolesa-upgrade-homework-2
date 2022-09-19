@@ -5,6 +5,7 @@ abstract class House
     protected $rooms;
     protected $price;
     protected $type;
+    public abstract function getTitle();
 
     public function __construct($rooms, $price, $type)
     {
@@ -42,7 +43,4 @@ abstract class House
     {
         $this->type = $type;
     }
-
-    public abstract function getTitle();
-
 }

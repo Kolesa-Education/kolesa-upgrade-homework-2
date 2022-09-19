@@ -2,7 +2,7 @@
 
 class RentHouse extends House
 {
-    private $period;
+    protected $period;
 
     public function __construct($rooms, $price, $type,$period)
     {
@@ -10,26 +10,27 @@ class RentHouse extends House
         $this->period = $period;
     }
 
-
     public function getPeriod()
     {
         return $this->period;
     }
-
 
     public function setPeriod($period)
     {
         $this->period = $period;
     }
 
-
-
     public function getTitle()
     {
+        $trip = "";
+        $title = "Сдам %d -комнатную квартиру за %d тг в %s";
         if ($this->getPeriod() == 'month'){
-            return "Сдам  $this->rooms -комнатную квартиру за $this->price тг в  месяц <br>";
-        }else{
-            return "Сдам  $this->rooms -комнатную квартиру за $this->price тг в  сутки \r\n";
+            $trip = "месяц";
         }
+        else{
+            $trip = "сутки";
+        }
+        return sprintf($title,$this->getRooms(),$this->getPrice(),$trip)." <br>";
     }
+
 }

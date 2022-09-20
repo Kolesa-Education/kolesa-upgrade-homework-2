@@ -1,90 +1,40 @@
 <?php
-
-interface Title
-{
-    public function getTitle();
-}
-
-
-
-class Price extends Advert implements Title
-{
-    protected int $price;
-
-    public function getPrice($price)
-    {
-        if ($price < 1000000) {
-            $this->price = "за " . number_format($this->price, 0, ' ', ' ') . " " . "тг";
-        } else if ($price >= 1000000) {
-            $this->price = "за " . $this->price / 1000000 . " млн. тг";
-        }
-        return $this->price;
-    }
-
-    public function getTitle() {}
-}
-
-
-
-class Period extends Advert implements Title
-{
-    protected ?string $period;
-
-    public function getPeriod($period)
-    {
-        if ($period == "month") {
-            $this->period = " в месяц";
-        } else if ($period == "day") {
-            $this->period = " в сутки";
-        } else if ($period == null) {
-            $this->period = "";
-        }
-        return $this->period;
-    }
-
-    public function getTitle() {}
-}
-
-
+require_once 'classes/title.class.php';
 
 abstract class Advert
 {
-    protected string $category;
-    protected int $rooms;
-    protected string $type;
+    public int $rooms;
+    public string $category;
+    public int $price;
+    public string $type;
+    public int $period;
 
-    public function __construct($rooms, $category, $type)
+    public function __construct($advert)
     {
-        $this->rooms = $rooms;
-        $this->category = $category;
-        $this->type = $type;
-    }
-
-    public function getCategory($category)
-    {
-        if ($category == "sale") {
-            $this->category = "Продам ";
-        };
-        if ($category == "rent") {
-            $this->category = "Сдам ";
+        $this->rooms = $advert['rooms'];
+        $this->category = $advert['category'];
+        $this->price = $advert['price'];
+        $this->type = $advert['type'];
+        if (isset($advert['period'])) {
+            $this->period = $advert['period'];
         }
-        return $this->category;
     }
 
-    public function getType($type) 
+    public function getType()
     {
-
-        if ($type == "dom") {
-            $this->type = $this->rooms . "-комнатный дом ";
-        };
-        if ($type == "kvartira") {
-            $this->type = $this->rooms . "-комнатную квартиру ";
+        if ($this->type == "dom") {
+            return $this->rooms . "-комнатный дом ";
+        } else if ($this->type == "kvartira") {
+            return $this->rooms . "-комнатную квартиру ";
         }
-        return $this->type;
     }
 
-    abstract public function getAdvert(Title $advert)
+    public function getPrice()
     {
-        $advert->getTitle();
+        if ($this->price < 1000000) {
+            return "за " . number_format($this->price, 0, "", " ") . " " . "тг";
+        } else if ($this->price >= 1000000) {
+            return "за " . $this->price / 1000000 . " млн. тг";
+        }
     }
 }

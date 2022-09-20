@@ -12,5 +12,5 @@ function myAutoLoader ($className) {
         return false;
     }
 
-    include_once $fullPath;
+    require_once $fullPath;
 }

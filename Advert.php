@@ -31,11 +31,9 @@ class Advert implements PostInterface
     {
         if ($this->livingSpace instanceof House) {;
             return $this->formatHouseTitle();
-        } elseif ($this->livingSpace instanceof Flat) {
-            return $this->formatFlatTitle();
         }
 
-        return 'Invalid living space type';
+        return $this->formatFlatTitle();
     }
 
     public function formatHouseTitle(): string
@@ -59,10 +57,8 @@ class Advert implements PostInterface
 
         if ($this->category instanceof Sale) {
             return $saleText;
-        } elseif ($this->category instanceof Rent) {
-            return $rentText;
         }
 
-        return 'Invalid category type';
+        return $rentText;
     }
 }

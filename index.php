@@ -43,7 +43,7 @@ class Rent extends GlobalAdvert
         }
     }
 
-    private function translatePeriod($period): string
+    protected function translatePeriod($period): string
     {
         if ($period === "month"){
             return "месяц";
@@ -63,7 +63,7 @@ class Sale extends GlobalAdvert
         }
     }
 
-    private function roundPrice($price): int
+    protected function roundPrice($price): int
     {
         if ($price>=1000000){
             return $price/1000000;

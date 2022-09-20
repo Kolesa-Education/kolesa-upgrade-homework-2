@@ -10,42 +10,18 @@ $adverts = [
 ];
 
 foreach ($adverts as $arr) {
-    $rooms = 0;
-    $category = "";
-    $price = 0.0;
-    $type = "";
-    $period = "";
-    foreach ($arr as $key => $value) {
-        switch ($key) {
-            case "rooms":
-                $rooms = $value;
-                break;
-            case "category":
-                $category = $value;
-                break;
-            case "price":
-                $price = $value;
-                break;
-            case "type":
-                $type = $value;
-                break;
-            case "period":
-                $period = $value;
-                break;
-        }
-    };
-    if ($category === "rent") {
-        $rent = new Rent;
-        $rent->setRooms($rooms);
-        $rent->setPrice($price);
-        $rent->setType($type);
-        $rent->setPeriod($period === "month" ? "помесячно" : "посуточно");
-        $rent->getTitle();
+    if ($arr['category'] === 'sale') {
+        $sale = new Sale;
+        $sale->setRooms($arr['rooms']);
+        $sale->setPrice($arr['price']);
+        $sale->setType($arr['type']);
+        $sale->getTitle();
         continue;
     }
-    $sale = new Sale;
-    $sale->setRooms($rooms);
-    $sale->setPrice($price);
-    $sale->setType($type);
-    $sale->getTitle();
+    $rent = new Rent;
+    $rent->setRooms($arr['rooms']);
+    $rent->setPrice($arr['price']);
+    $rent->setType($arr['type']);
+    $rent->setPeriod($arr['period'] === "month" ? "помесячно" : "посуточно");
+    $rent->getTitle();
 }

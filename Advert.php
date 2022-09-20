@@ -29,33 +29,6 @@ class Advert implements PostInterface
 
     public function getTitle(): string
     {
-        if ($this->livingSpace instanceof House) {;
-            return $this->formatHouseTitle();
-        }
-
-        return $this->formatFlatTitle();
-    }
-
-    public function formatHouseTitle(): string
-    {
-        $text = 'комнатный дом';
-
-        return $this->formatTitle($text);
-    }
-
-    public function formatFlatTitle(): string
-    {
-        $text = 'комнатную квартиру';
-
-        return $this->formatTitle($text);
-    }
-
-    public function formatTitle(string $text): string
-    {
-        if ($this->category instanceof Sale) {
-            return "Продам {$this->livingSpace->getRooms()}-{$text} за {$this->getFormatStringPrice()} тг";;
-        }
-
-        return "Сдам {$this->livingSpace->getRooms()}-{$text} за {$this->getFormatStringPrice()} тг в {$this->category->getRentPeriod()}";;
+        return $this->category->getTitle($this->livingSpace, $this->getFormatStringPrice());
     }
 }

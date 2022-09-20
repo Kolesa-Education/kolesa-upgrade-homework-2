@@ -6,8 +6,10 @@ include_once 'Category.php';
 
 class Sale extends Category
 {
-    public function __construct()
+    public function getTitle(LivingSpace $livingSpace, string $formatStringPrice): string
     {
-        parent::__construct('sale');
+        $text = $this->formatHouseOrFlatTitle($livingSpace);
+
+        return "Продам {$livingSpace->getRooms()}-{$text} за {$formatStringPrice} тг";
     }
 }

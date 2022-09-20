@@ -4,24 +4,14 @@ namespace Advert;
 
 abstract class Category
 {
-    protected string $name;
+    public abstract function getTitle(LivingSpace $livingSpace, string $formatStringPrice): string;
 
-    public function __construct(string $name)
+    public function formatHouseOrFlatTitle(LivingSpace $livingSpace): string
     {
-        $this->name = $name;
-    }
+        if ($livingSpace instanceof House) {
+            $text = 'комнатный дом';
+        } else $text = 'комнатную квартиру';
 
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getRentPeriod(): string
-    {
-        if (method_exists($this, 'getPeriod')) {
-            return $this->getPeriod();
-        }
-
-        return "";
+        return $text;
     }
 }

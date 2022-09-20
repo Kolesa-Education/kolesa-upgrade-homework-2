@@ -10,8 +10,6 @@ class Rent extends Category
 
     public function __construct(string $period)
     {
-        parent::__construct('rent');
-
         if ($period == 'month') {
             $period = 'месяц';
         } elseif ($period == 'day') {
@@ -21,8 +19,10 @@ class Rent extends Category
         $this->period = $period;
     }
 
-    public function getPeriod(): string
+    public function getTitle(LivingSpace $livingSpace, string $formatStringPrice): string
     {
-        return $this->period;
+        $text = $this->formatHouseOrFlatTitle($livingSpace);
+
+        return "Сдам {$livingSpace->getRooms()}-{$text} за {$formatStringPrice} тг в {$this->period}";
     }
 }

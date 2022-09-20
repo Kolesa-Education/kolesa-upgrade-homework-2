@@ -61,7 +61,7 @@ class AdvertRent  extends Advert
         if (count($cur) < 5) {
             return 'error: array less than expected';
         }
-        return 'Продам ' . $cur['rooms'] . $this->type($cur['type']) . $this->sum($cur['price']) . $this->period($cur['period']);
+        return 'Сдам ' . $cur['rooms'] . $this->type($cur['type']) . $this->sum($cur['price']) . $this->period($cur['period']);
     }
 
     protected function period(string $type) : string

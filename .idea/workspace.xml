@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="71106f28-9329-4027-9037-594c95b57745" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/kolesa-upgrade-homework-2/AbstractAdvert.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/kolesa-upgrade-homework-2/Rent.php" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/kolesa-upgrade-homework-2" />
+  </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
+  <component name="ProjectId" id="2Evrev4CJLuDLPEAYbkrIO7LRce" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console" path="$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <method v="2" />
+    </configuration>
+    <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" nameIsGenerated="true" path="$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php">
+      <CommandLine>
+        <PhpTestInterpreterSettings>
+          <option name="interpreterName" value="PHP" />
+        </PhpTestInterpreterSettings>
+      </CommandLine>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="71106f28-9329-4027-9037-594c95b57745" name="Default Changelist" comment="" />
+      <created>1663486998131</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1663486998131</updated>
+      <workItem from="1663486999170" duration="9478000" />
+      <workItem from="1663595715787" duration="2822000" />
+      <workItem from="1663678159276" duration="8169000" />
+      <workItem from="1663686453302" duration="3059000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="2475" y="218" key="#Inspections" timestamp="1663603057847">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2475" y="218" key="#Inspections/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1663603057847" />
+    <state x="2556" y="183" key="#PHP" timestamp="1663603334012">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2556" y="183" key="#PHP/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1663603334012" />
+    <state x="2303" y="195" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1663603390713">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="2303" y="195" width="1092" height="728" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1663603390713" />
+    <state x="971" y="254" key="#com.intellij.ide.util.MemberChooser" timestamp="1663683058811">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="971" y="254" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1663683058811" />
+    <state x="999" y="258" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1663689712658">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="999" y="258" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1663689712658" />
+    <state x="709" y="314" key="FileChooserDialogImpl" timestamp="1663686021780">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="709" y="314" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1663686021780" />
+    <state x="2629" y="314" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1663603317667" />
+    <state width="1340" height="328" key="GridCell.Tab.0.bottom" timestamp="1663689702831">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1340" height="328" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1663689702831" />
+    <state width="1340" height="328" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1663605229005" />
+    <state width="1340" height="328" key="GridCell.Tab.0.center" timestamp="1663689702831">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1340" height="328" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1663689702831" />
+    <state width="1340" height="328" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1663605229004" />
+    <state width="1340" height="328" key="GridCell.Tab.0.left" timestamp="1663689702831">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1340" height="328" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1663689702831" />
+    <state width="1340" height="328" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1663605229004" />
+    <state width="1340" height="328" key="GridCell.Tab.0.right" timestamp="1663689702831">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1340" height="328" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1663689702831" />
+    <state width="1340" height="328" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1663605229005" />
+    <state width="1340" height="328" key="GridCell.Tab.1.bottom" timestamp="1663689702831">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1340" height="328" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1663689702831" />
+    <state width="1340" height="328" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1663605229005" />
+    <state width="1340" height="328" key="GridCell.Tab.1.center" timestamp="1663689702831">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1340" height="328" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1663689702831" />
+    <state width="1340" height="328" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1663605229005" />
+    <state width="1340" height="328" key="GridCell.Tab.1.left" timestamp="1663689702831">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1340" height="328" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1663689702831" />
+    <state width="1340" height="328" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1663605229005" />
+    <state width="1340" height="328" key="GridCell.Tab.1.right" timestamp="1663689702831">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1340" height="328" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1663689702831" />
+    <state width="1340" height="328" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1663605229005" />
+    <state x="717" y="313" key="NewPhpClassDialog" timestamp="1663689180878">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="717" y="313" key="NewPhpClassDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1663689180878" />
+    <state x="2655" y="470" key="NewPhpFileDialog" timestamp="1663520314259">
+      <screen x="1920" y="0" width="1920" height="1040" />
+    </state>
+    <state x="735" y="470" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1663488675124" />
+    <state x="2655" y="470" key="NewPhpFileDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1663520314259" />
+    <state x="772" y="301" key="refactoring.ChangeSignatureDialog" timestamp="1663686684115">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="772" y="301" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1663686684115" />
+    <state x="2692" y="301" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040@1920.0.1920.1040" timestamp="1663603090886" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php</url>
+          <line>16</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php</url>
+          <line>18</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php</url>
+          <line>19</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php</url>
+          <line>20</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php</url>
+          <line>21</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php</url>
+          <line>22</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php</url>
+          <line>5</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php</url>
+          <line>30</line>
+          <option name="timeStamp" value="42" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php</url>
+          <line>32</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/Sale.php</url>
+          <line>31</line>
+          <option name="timeStamp" value="45" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/Sale.php</url>
+          <line>32</line>
+          <option name="timeStamp" value="46" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/Sale.php</url>
+          <line>33</line>
+          <option name="timeStamp" value="47" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/Sale.php</url>
+          <line>34</line>
+          <option name="timeStamp" value="48" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/Sale.php</url>
+          <line>37</line>
+          <option name="timeStamp" value="49" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/Sale.php</url>
+          <line>38</line>
+          <option name="timeStamp" value="50" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/Sale.php</url>
+          <line>40</line>
+          <option name="timeStamp" value="51" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/Sale.php</url>
+          <line>58</line>
+          <option name="timeStamp" value="54" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/Sale.php</url>
+          <line>56</line>
+          <option name="timeStamp" value="55" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/Sale.php</url>
+          <line>57</line>
+          <option name="timeStamp" value="56" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php</url>
+          <line>25</line>
+          <option name="timeStamp" value="57" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php</url>
+          <line>27</line>
+          <option name="timeStamp" value="58" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php</url>
+          <line>7</line>
+          <option name="timeStamp" value="60" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php</url>
+          <line>3</line>
+          <option name="timeStamp" value="61" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php</url>
+          <line>4</line>
+          <option name="timeStamp" value="62" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

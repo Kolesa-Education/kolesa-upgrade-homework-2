@@ -63,7 +63,7 @@ class Sale extends GlobalAdvert
         }
     }
 
-    protected function roundPrice($price): int
+    protected function roundPrice($price): float
     {
         if ($price>=1000000){
             return $price/1000000;

@@ -33,9 +33,9 @@ class Advert
     {
         if ($price < 1000000) {
             $n = number_format(floatval($price),0,'.',' ');
-            return sprintf("%d тг", $n);
+            return sprintf(" %d тг", $n);
         } else {
-            return sprintf("%d млн. тг", $price / 1000000);
+            return sprintf(" %d млн. тг", $price / 1000000);
         }
     }
 }
@@ -45,7 +45,7 @@ class AdvertSale  extends Advert
     public function getTitle() : string
     {
         $cur = $this->adv;
-        return 'Продам' . $cur[0] . $this->type($cur[3]) . $this->sum($cur[2]);
+        return 'Продам ' . $cur['rooms'] . $this->type($cur['type']) . $this->sum($cur['price']);
     }
 }
 
@@ -54,7 +54,7 @@ class AdvertRent  extends Advert
     public function getTitle() : string
     {
         $cur = $this->adv;
-        return 'Продам' . $cur[0] . $this->type($cur[3]) . $this->sum($cur[2]) . $this->period($cur[4]);;
+        return 'Продам ' . $cur['rooms'] . $this->type($cur['type']) . $this->sum($cur['price']) . $this->period($cur['period']);
     }
 
     protected function period(string $type) : string
@@ -69,6 +69,7 @@ class AdvertRent  extends Advert
 
 $allAdv = array();
 
+
 // adding
 for ($i = 0; $i < count($adverts); $i++) {
     if ($adverts[$i]['category'] == 'sale') {
@@ -79,8 +80,10 @@ for ($i = 0; $i < count($adverts); $i++) {
     
 }
 
+// echo 'here';
+// echo print_r($allAdv);
+
 for ($i = 0; $i < count($allAdv); $i++) {
     echo $allAdv[$i]->getTitle();
+    echo '<br>';
 }
-
-?>

@@ -2,45 +2,52 @@
 
 interface OutPut {
     public function getTitle();
-    public function getType($type, $rooms);
-    public function getPrice($price);
+    public function getType();
+    public function getPrice();
 }
 
 abstract class Advert implements OutPut{
+
     protected $type;
     protected $price;
     protected $rooms;
 
-    public function __construct(array $arguments = array()) {
-        if (!empty($arguments)) {
-            foreach ($arguments as $property => $argument) {
+    public function __construct(array $arguments = array())
+    {
+        if (!empty($arguments))
+        {
+            foreach ($arguments as $property => $argument)
+            {
                 $this->{$property} = $argument;
             }
         }
     }
 
-    public function getType($type, $rooms)
+    public function getType()
     {
-        switch ($type){
+        switch ($this->type)
+        {
             case "dom":
-                return $rooms . "-комнатный дом ";
+                return $this->rooms . "-комнатный дом ";
             case "kvartira":
-                return $rooms . "-комнатную квартиру ";
+                return $this->rooms . "-комнатную квартиру ";
         }
         return null;
     }
 
-    public function getPrice($price)
+    public function getPrice()
     {
-        if ($price >= 1000000) {
-            return "за " . ($price / 1000000) . " млн тг";
+        if ($this->price >= 1000000)
+        {
+            return "за " . ($this->price / 1000000) . " млн тг";
         }
 
-        if ($price >= 1000) {
-            return "за " . ($price / 1000) . " 000" . " тг";
+        if ($this->price >= 1000)
+        {
+            return "за " . ($this->price / 1000) . " 000" . " тг";
         }
 
-        return "за " . $price . " тг";
+        return "за " . $this->price . " тг";
     }
 
 
@@ -51,22 +58,26 @@ class Sale extends Advert
 
     public function getTitle()
     {
-        echo "Продам " . $this->getType($this->type, $this->rooms) . $this->getPrice($this->price) . PHP_EOL;
+        return "Продам " . $this->getType() . $this->getPrice() . PHP_EOL;
     }
 
 }
 
 class Rent extends Advert
 {
+
     public $period;
+
     public function getTitle()
     {
-        echo "Сдам " . $this->getType($this->type, $this->rooms) . $this->getPrice($this->price) . $this->getPeriod($this->period) . PHP_EOL;
+        return "Сдам " . $this->getType() . $this->getPrice() . $this->getPeriod() . PHP_EOL;
 
     }
 
-    private function getPeriod($period){
-        switch ($period){
+    private function getPeriod()
+    {
+        switch ($this->period)
+        {
             case "month":
                 return " в месяц";
             case "day":
@@ -86,8 +97,10 @@ $adverts = [
 
 $objAdverts = array();
 
-foreach ($adverts as $value){
-    switch ($value['category']){
+foreach ($adverts as $value)
+{
+    switch ($value['category'])
+    {
         case "sale":
             $obj = new Sale($value);
             break;
@@ -95,10 +108,12 @@ foreach ($adverts as $value){
             $obj = new Rent($value);
             break;
     }
+
     $objAdverts[] = $obj;
 
 }
 
-foreach ($objAdverts as $obj){
-    $obj->getTitle();
+foreach ($objAdverts as $obj)
+{
+    echo $obj->getTitle();
 }

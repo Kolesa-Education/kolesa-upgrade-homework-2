@@ -22,7 +22,7 @@ abstract class GlobalAdvert
         $this->category = $category;
     }
 
-    abstract function getTitle() :string;
+    abstract public function getTitle() :string;
 }
 
 class Rent extends GlobalAdvert
@@ -35,7 +35,7 @@ class Rent extends GlobalAdvert
         parent::__construct($type,$rooms,$price,$category,$period);
     }
 
-    public function getTitle(){
+    public function getTitle() :string{
         if ($this->type=='dom') {
             return "Сдам " . $this->rooms . "-комнатный дом за " . $this->price . " тг в " . $this->translatePeriod($this->period) . "\n";
         } else {
@@ -55,7 +55,7 @@ class Rent extends GlobalAdvert
 
 class Sale extends GlobalAdvert
 {
-    public function getTitle(){
+    public function getTitle() :string{
         if ($this->type=='dom') {
             return  "Продам " . $this->rooms . "-комнатный дом за " . $this->roundPrice($this->price) . " млн.тг\n"; 
         } else {

@@ -9,12 +9,12 @@ $adverts = [
 
 abstract class GlobalAdvert
 {
-    public $type;
-    public $rooms;
-    public $price;
-    public $category;
+    public string $type;
+    public int $rooms;
+    public int $price;
+    public string $category;
 
-    public function __construct($type,$rooms,$price,$category)
+    public function __construct(string $type,int $rooms,int $price,string $category)
     {
         $this->type = $type;
         $this->rooms = $rooms;
@@ -27,15 +27,15 @@ abstract class GlobalAdvert
 
 class Rent extends GlobalAdvert
 {
-    public $period;
+    public string $period;
 
-    public function __construct($type,$rooms,$price,$category,$period)
+    public function __construct(string $type,int $rooms,int $price,string $category,string $period)
     {
         $this->period = $period;
         parent::__construct($type,$rooms,$price,$category,$period);
     }
 
-    function getTitle(){
+    public function getTitle(){
         if ($this->type=='dom') {
             return "Сдам " . $this->rooms . "-комнатный дом за " . $this->price . " тг в " . $this->translatePeriod($this->period) . "\n";
         } else {
@@ -43,7 +43,7 @@ class Rent extends GlobalAdvert
         }
     }
 
-    public function translatePeriod($period)
+    private function translatePeriod($period): string
     {
         if ($period === "month"){
             return "месяц";
@@ -55,7 +55,7 @@ class Rent extends GlobalAdvert
 
 class Sale extends GlobalAdvert
 {
-    function getTitle(){
+    public function getTitle(){
         if ($this->type=='dom') {
             return  "Продам " . $this->rooms . "-комнатный дом за " . $this->roundPrice($this->price) . " млн.тг\n"; 
         } else {
@@ -63,7 +63,8 @@ class Sale extends GlobalAdvert
         }
     }
 
-    public function roundPrice($price){
+    private function roundPrice($price): int
+    {
         if ($price>=1000000){
             return $price/1000000;
         }else{

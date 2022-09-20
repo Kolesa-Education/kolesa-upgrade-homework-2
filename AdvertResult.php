@@ -1,6 +1,6 @@
 <?php
-
-require_once 'HouseAndApartments.php';
+require_once 'Sale.php';
+require_once 'Rent.php';
 
 $adverts = [
     ['rooms' => 5, 'category' => 'sale', 'price' => 55000000, 'type' => 'dom'],
@@ -9,6 +9,20 @@ $adverts = [
     ['rooms' => 1, 'category' => 'rent', 'price' => 150000, 'type' => 'kvartira', 'period' => 'day'],
 ];
 
+// Реализация задания
 foreach ($adverts as $advertisement) {
-    (new HouseAndApartments($advertisement))->getTitle();
+    if (isset($advertisement['period'])) {
+        (new Rent($advertisement))->getTitle();
+    } else {
+        (new Sale($advertisement))->getTitle();
+    }
 }
+
+// Пример реализация дополнительного метода totalPrice
+foreach ($adverts as $advertisement) {
+    if (isset($advertisement['period'])) {
+        (new Rent($advertisement))->totalPrice(25);
+    }
+}
+
+

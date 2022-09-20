@@ -1,4 +1,5 @@
 <?php
+require_once 'Interface.php';
 
 abstract class Advert
 {
@@ -7,6 +8,8 @@ abstract class Advert
     public int $price;
     public string $type;
     public string $period = '';
+
+
 
     public function __construct(array $advertisement)
     {
@@ -19,24 +22,15 @@ abstract class Advert
         }
     }
 
-    function formatCategoryToHuman(): string
-    {
-        if ($this->category === 'sale') {
-            return 'Продам ';
-        } else {
-            return 'Сдам ';
-        }
-    }
 
-    function formatPriceToHuman(): string
+    public function formatPriceToHuman(): string
     {
         if ($this->price < 1000) {
             return sprintf('%d', $this->price) . ' тг';
         }
 
         if ($this->price < 1000000) {
-            $price = $this->price / 1000;
-            return number_format($price, 1) . ' тыс.тг';
+            return sprintf('%d', $this->price) . ' тг';
         }
 
         if ($this->price < 1000000000) {
@@ -49,7 +43,7 @@ abstract class Advert
         return number_format($price, 1) . ' млрд.тг';
     }
 
-    function formatTypeToHuman(): string
+    public function formatTypeToHuman(): string
     {
         if ($this->type === 'dom') {
             return '-комнатный дом за ';
@@ -58,16 +52,4 @@ abstract class Advert
         }
     }
 
-    function formatPeriodToHuman(): string
-    {
-        if ($this->period === 'month') {
-            return ' в месяц';
-        } elseif ($this->period === 'day') {
-            return ' в сутки';
-        } else {
-            return '';
-        }
-    }
-
-    abstract function getTitle(): void;
 }

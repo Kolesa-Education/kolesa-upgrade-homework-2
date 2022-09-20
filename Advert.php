@@ -1,6 +1,11 @@
 <?php
 header('Content-type: text/plain');
 
+interface Price
+{
+    public function formatPrice($price);
+}
+
 abstract class Advert
 {
     protected $rooms;
@@ -43,7 +48,7 @@ abstract class Advert
     abstract public function getTitle(): string;
 }
 
-class saleAdvert extends Advert
+class saleAdvert extends Advert implements Price
 {
     public function __construct(int $rooms, float $price, string $type)
     {
@@ -52,12 +57,22 @@ class saleAdvert extends Advert
         $this->type = $type;
     }
 
+    public function formatPrice($price)
+    {
+        if ($price > 1000000)
+            return round(($price / 1000000), 1) . ' млн.';
+        else if ($price > 1000)
+            return number_format($price, 0, '.', ' ');
+
+        return number_format($price);
+    }
+
     public function getTitle(): string
     {
         if ($this->type == 'dom') {
-            return "Продам $this->rooms-комнатный дом за $this->price тг" . PHP_EOL;
+            return "Продам " . $this->rooms . "-комнатный дом за " . $this->formatPrice($this->price) . " тг" . PHP_EOL;
         } else {
-            return "Продам $this->rooms-комнатную квартиру за $this->price тг" . PHP_EOL;
+            return "Продам " . $this->rooms . "-комнатную квартиру за " . $this->formatPrice($this->price) . " тг" . PHP_EOL;
         }
     }
 }
@@ -74,6 +89,16 @@ class rentAdvert extends Advert
         $this->period = $period;
     }
 
+    public function formatPrice($price)
+    {
+        if ($price > 1000000)
+            return round(($price / 1000000), 1) . ' млн.';
+        else if ($price > 1000)
+            return number_format($price, 0, '.', ' ');
+
+        return number_format($price);
+    }
+
     function setPeriod($period)
     {
         $this->period = $period;
@@ -86,9 +111,9 @@ class rentAdvert extends Advert
     public function getTitle(): string
     {
         if ($this->period == 'month') {
-            return "Сдам $this->rooms-комнатную квартиру за $this->price тг в месяц" . PHP_EOL;
+            return "Сдам " . $this->rooms . "-комнатную квартиру за " . $this->formatPrice($this->price) . " тг в месяц" . PHP_EOL;
         } else {
-            return "Сдам $this->rooms-комнатную квартиру за $this->price тг в сутки" . PHP_EOL;
+            return "Сдам " . $this->rooms . "-комнатную квартиру за " . $this->formatPrice($this->price) . " тг в сутки" . PHP_EOL;
         }
     }
 }

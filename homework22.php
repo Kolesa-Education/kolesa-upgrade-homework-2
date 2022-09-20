@@ -38,7 +38,12 @@ abstract class Advert
     }
 }
 
-class AdvertRent extends Advert
+interface Period
+{
+    public function getPeriod($period);
+}
+
+class AdvertRent extends Advert implements Period
 {
     protected $period;
 

@@ -7,7 +7,7 @@ abstract class Advert
     public string $category;
     public int $price;
     public string $type;
-    public int $period;
+    public string $period;
 
     public function __construct($advert)
     {

@@ -31,9 +31,10 @@ class Advert
 
     protected function sum(int $price) : string
     {
+        
         if ($price < 1000000) {
-            $n = number_format(floatval($price),0,'.',' ');
-            return sprintf(" %d тг", $n);
+            $n = strval(number_format(floatval($price),0,'.',' '));
+            return sprintf(" %s тг", $n);
         } else {
             return sprintf(" %d млн. тг", $price / 1000000);
         }
@@ -45,6 +46,9 @@ class AdvertSale  extends Advert
     public function getTitle() : string
     {
         $cur = $this->adv;
+        if (count($cur) < 4) {
+            return 'error: array less than expected';
+        }
         return 'Продам ' . $cur['rooms'] . $this->type($cur['type']) . $this->sum($cur['price']);
     }
 }
@@ -54,6 +58,9 @@ class AdvertRent  extends Advert
     public function getTitle() : string
     {
         $cur = $this->adv;
+        if (count($cur) < 5) {
+            return 'error: array less than expected';
+        }
         return 'Продам ' . $cur['rooms'] . $this->type($cur['type']) . $this->sum($cur['price']) . $this->period($cur['period']);
     }
 

@@ -11,6 +11,20 @@ abstract class Advert
     protected $price;
     protected $type;
 
+    /**
+     * @param $rooms
+     * @param $category
+     * @param $price
+     * @param $type
+     */
+    public function __construct($rooms, $category, $price, $type)
+    {
+        $this->setRooms($rooms);
+        $this->setCategory($category);
+        $this->setPrice($price);
+        $this->setType($type);
+    }
+
     function setRooms($rooms)
     {
         $this->rooms = $rooms;
@@ -57,21 +71,32 @@ abstract class Advert
 /**
  *  Класс объявлений категории Продажа
  */
-class saleAdvert extends Advert
+class SaleAdvert extends Advert
 {
+    protected const CATEGORY = 'sale';
+    protected const SALE_DOM = 'dom';
+
     public function __construct(int $rooms, float $price, string $type)
     {
-        $this->rooms = $rooms;
-        $this->price = $price > 1000000 ? ($price / 1000000) : number_format($price, 0);
-        $this->type  = $type;
+        parent::__construct($rooms, self::CATEGORY, $price, $type);
+
+        $this->setPrice($price > 1000000 ? ($price / 1000000) : number_format($price, 0));
+    }
+
+    public function isTypeDom()
+    {
+        return self::SALE_DOM === $this->type;
     }
 
     public function getTitle(): string
     {
-        if ($this->type == 'dom') {
-            return "Продам $this->rooms-комнатный дом за $this->price млн. тг" . PHP_EOL;
+        if ($this->isTypeDom()) {
+            return sprintf("Продам %s-комнатный дом за %d млн. тг %s",
+                $this->getRooms(), $this->getPrice(), PHP_EOL);
         } else {
-            return "Продам $this->rooms-комнатную квартиру за $this->price млн. тг" . PHP_EOL;
+            return sprintf(
+                "Продам %s-комнатную квартиру за %d млн. тг %s" ,
+                $this->getRooms(), $this->getPrice(), PHP_EOL);
         }
     }
 }
@@ -79,16 +104,17 @@ class saleAdvert extends Advert
 /**
  * Класс объявлений категории Аренда
  */
-class rentAdvert extends Advert
+class RentAdvert extends Advert
 {
-    public $period;
+    protected const CATEGORY = 'rent';
+    protected const PERIOD_MONTH = 'month';
+    protected  $period;
 
     public function __construct(int $rooms, float $price, string $type, string $period)
     {
-        $this->rooms  = $rooms;
-        $this->price  = number_format($price, 0, ' ', ' ');
-        $this->type   = $type;
-        $this->period = $period;
+        parent::__construct($rooms, self::CATEGORY, $price, $type);
+
+        $this->setPeriod($period);
     }
 
     function setPeriod($period)
@@ -100,13 +126,19 @@ class rentAdvert extends Advert
     {
         return $this->period;
     }
+    public function isPeriodMohth()
+    {
+        return self::PERIOD_MONTH === $this->period;
+    }
 
     public function getTitle(): string
     {
-        if ($this->period == 'month') {
-            return "Сдам $this->rooms-комнатную квартиру за $this->price тг в месяц" . PHP_EOL;
+        if ($this->isPeriodMohth()) {
+            return sprintf("Сдам %s-комнатную квартиру за %d тг в месяц %s" ,
+                $this->getRooms(), $this->getPrice(), PHP_EOL);
         } else {
-            return "Сдам $this->rooms-комнатную квартиру за $this->price тг в сутки" . PHP_EOL;
+            return sprintf("Сдам %s-комнатную квартиру за %d тг в сутки %s" ,
+                $this->getRooms(), $this->getPrice(), PHP_EOL);
         }
     }
 }
@@ -120,10 +152,10 @@ $adverts = [
 
 foreach ($adverts as $advert) {
     if ($advert['category'] == 'sale') {
-        $advert = new saleAdvert($advert['rooms'], $advert['price'], $advert['type']);
+        $advert = new SaleAdvert($advert['rooms'], $advert['price'], $advert['type']);
         echo $advert->getTitle();
     } else {
-        $advert = new rentAdvert($advert['rooms'], $advert['price'], $advert['type'], $advert['period']);
+        $advert = new RentAdvert($advert['rooms'], $advert['price'], $advert['type'], $advert['period']);
         echo $advert->getTitle();
     }
 }

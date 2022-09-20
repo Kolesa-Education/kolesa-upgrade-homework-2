@@ -22,7 +22,7 @@ abstract class GlobalAdvert
         $this->category = $category;
     }
 
-    abstract function getTitle();
+    abstract function getTitle() :string;
 }
 
 class Rent extends GlobalAdvert

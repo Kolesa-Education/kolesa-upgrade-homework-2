@@ -1,31 +1,31 @@
 
 <?php
 
-require_once 'Title.php';
+require_once 'AdvertInterface.php';
 
-abstract class Advert implements Title
+abstract class Advert implements AdvertInterface
 {
     protected $rooms;
     protected $price;
     protected $type;
     protected $period;
 
-    protected function get_formatted_price()
+    protected function getFormattedPrice()
     {
-        $price_size = (int) log10($this->price);
-        if ($price_size >= 6 && $this->price % 10 ** 5 == 0) {
-            $formatted_price = (string) ($this->price / 10 ** 6);
-            return  $formatted_price . ' млн. тг';
-        } elseif ($price_size < 6 && $price_size >= 3 && $this->price % 10 ** 2 == 0) {
-            $formatted_price = (string) ($this->price / 10 ** 3);
-            return $formatted_price . ' тыс. тг';
+        $priceSize = (int) log10($this->price);
+        if ($priceSize >= 6 && $this->price % 10 ** 5 == 0) {
+            $formattedPrice = (string) ($this->price / 10 ** 6);
+            return  $formattedPrice . ' млн. тг';
+        } elseif ($priceSize < 6 && $priceSize >= 3 && $this->price % 10 ** 2 == 0) {
+            $formattedPrice = (string) ($this->price / 10 ** 3);
+            return $formattedPrice . ' тыс. тг';
         } else {
-            $formatted_price = (string) ((int) $this->price);
-            return $formatted_price . ' тг';
+            $formattedPrice = (string) ((int) $this->price);
+            return $formattedPrice . ' тг';
         }
     }
 
-    protected function get_house_type()
+    protected function getHouseType()
     {
         if ($this->type == 'dom') {
             return 'комнатный дом';
@@ -36,7 +36,7 @@ abstract class Advert implements Title
         }
     }
 
-    protected function get_rent_period()
+    protected function getRentPeriod()
     {
         if ($this->period == 'month') {
             return 'в месяц';
@@ -47,7 +47,7 @@ abstract class Advert implements Title
         }
     }
 
-    abstract public function get_title(): string;
+    abstract public function getTitle(): string;
 }
 
 // EOF

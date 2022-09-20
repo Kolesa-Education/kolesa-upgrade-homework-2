@@ -2,7 +2,7 @@
 
 require_once 'Advert.php';
 
-class Sale_advert extends Advert
+class SaleAdvert extends Advert
 {
     public function __construct(int $rooms = NULL, float $price = NULL, string $type = NULL)
     {
@@ -11,20 +11,20 @@ class Sale_advert extends Advert
         $this->type = $type;
     }
 
-    public function get_title(): string
+    public function getTitle(): string
     {
         $formatted_txt = 'Продам %d-%s за %s' . PHP_EOL . '<br>';
 
         return sprintf(
             $formatted_txt,
             $this->rooms,
-            $this->get_house_type(),
-            $this->get_formatted_price(),
+            $this->getHouseType(),
+            $this->getFormattedPrice(),
         );
     }
 }
 
-class Rent_advert extends Advert
+class RentAdvert extends Advert
 {
     public function __construct(int $rooms = NULL, float $price = NULL, string $type = NULL, string $period = NULL)
     {
@@ -34,16 +34,16 @@ class Rent_advert extends Advert
         $this->period = $period;
     }
 
-    public function get_title(): string
+    public function getTitle(): string
     {
         $formatted_txt = 'Сдам %d-%s за %s %s' . PHP_EOL . '<br>';
 
         return sprintf(
             $formatted_txt,
             $this->rooms,
-            $this->get_house_type(),
-            $this->get_formatted_price(),
-            $this->get_rent_period(),
+            $this->getHouseType(),
+            $this->getFormattedPrice(),
+            $this->getRentPeriod(),
         );
     }
 }
@@ -58,22 +58,22 @@ $adverts = [
     ['rooms' => 1, 'category' => 'rent', 'price' => 15000, 'type' => 'UNK', 'period' => 'day'],
 ];
 
-$wrong_advert_arr = array();
+$wrongAdvert = [];
 
 foreach ($adverts as $key => $advert) {
     if (!isset($advert['category']) || !isset($advert['rooms']) || !isset($advert['price']) || !isset($advert['type'])) {
-        array_push($wrong_advert_arr, $key);
+        array_push($wrongAdvert, $key);
     } elseif ($advert['category'] == 'sale') {
-        $advert = new Sale_advert($advert['rooms'], $advert['price'], $advert['type']);
-        echo $advert->get_title();
+        $advert = new SaleAdvert($advert['rooms'], $advert['price'], $advert['type']);
+        echo $advert->getTitle();
     } elseif ($advert['category'] == 'rent') {
-        $advert = new Rent_advert($advert['rooms'], $advert['price'], $advert['type'], $advert['period']);
-        echo $advert->get_title();
+        $advert = new RentAdvert($advert['rooms'], $advert['price'], $advert['type'], $advert['period']);
+        echo $advert->getTitle();
     }
 }
 
 echo '>>> неправильно заданы объявления:' . PHP_EOL . '<br>';
-foreach ($wrong_advert_arr as $errors) {
+foreach ($wrongAdvert as $errors) {
     echo $errors . PHP_EOL . '<br>';
 }
 

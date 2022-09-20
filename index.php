@@ -144,22 +144,12 @@ class SaleAdvert extends Advert {
         return self::TYPE == $this->get_type();
     }
 
-    function isPeriodMonth() {
-        return self::PERIOD == $this->get_period();
-    }
-
     function getTitle() {
 
         if ($this->isTypeDom()) {
             $type_text = "-комнатный дом за ";
         } else {
             $type_text = "-комнатную квартиру за ";
-        }
-
-        if ($this->isPeriodMonth()) {
-            $period_text = " тг в месяц";
-        } else {
-            $period_text = " тг в сутки";
         }
 
         $formatted_price = new Format;

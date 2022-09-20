@@ -1,6 +1,6 @@
 <?php
 
-include_once 'AdvertFactory.php';
+require_once "vendor/autoload.php";
 
 use Advert\AdvertFactory;
 

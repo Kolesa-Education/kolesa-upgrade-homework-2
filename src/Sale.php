@@ -2,7 +2,6 @@
 
 namespace Advert;
 
-include_once 'Category.php';
 
 class Sale extends Category
 {

@@ -3,7 +3,6 @@
 
 namespace Advert;
 
-include_once 'LivingSpace.php';
 
 class House extends LivingSpace
 {

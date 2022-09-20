@@ -3,7 +3,6 @@
 
 namespace Advert;
 
-include_once 'PostInterface.php';
 
 class Advert implements PostInterface
 {

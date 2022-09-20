@@ -3,13 +3,6 @@
 
 namespace Advert;
 
-include_once 'Advert.php';
-include_once 'Flat.php';
-include_once 'House.php';
-include_once 'Rent.php';
-include_once 'Sale.php';
-include_once 'periods.php';
-
 use Exception;
 
 class AdvertFactory
@@ -27,7 +20,7 @@ class AdvertFactory
             if ($advert['category'] == 'sale') {
                 $category = new Sale();
             } elseif ($advert['category'] == 'rent') {
-                if (!in_array($advert['period'], PERIODS)) {
+                if (!in_array($advert['period'], Period::RENT_PERIODS)) {
                     throw new Exception('Invalid period');
                 }
 

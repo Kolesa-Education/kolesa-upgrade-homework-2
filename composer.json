@@ -1,0 +1,15 @@
+{
+    "name": "rsidash/kolesa-upgrade-homework-2",
+    "authors": [
+        {
+            "name": "Roman Sidash",
+            "email": "sidash.roman@mail.ru"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Advert\\": "src/"
+        }
+    }
+}

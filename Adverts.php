@@ -1,7 +1,7 @@
 <?php
 require_once "AdvertsInterface.php";
 
-class Adverts
+class Adverts extends AdvertsInterface
 {
     private array $arr;
 
@@ -40,8 +40,7 @@ class Adverts
         return "";
     }
 
-    protected
-    function checkType(): string
+    protected function checkType(): string
     {
         if ($this->arr["type"] == "kvartira") {
             return "квартиру";
@@ -64,6 +63,5 @@ class Adverts
         $result = $this->checkCategory() . " " . $this->arr['rooms'] . "-" . $this->checkRooms() . " " . $this->checkType() . " за " . $this->checkPrice() . $this->checkPeriod();
         echo $result . PHP_EOL;
     }
-
 
 }

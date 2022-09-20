@@ -1,16 +1,16 @@
 <?php
 
-interface AdvertsInterface
+abstract class AdvertsInterface
 {
-    public function checkPrice();
 
-    public function checkCategory();
+    protected abstract function checkCategory();
 
-    public function checkPeriod();
+    protected abstract function checkPeriod();
 
-    public function checkType();
+    protected abstract function checkType();
 
-    public function checkRooms();
+    protected abstract function checkRooms();
 
-    public function getTitle();
+    public abstract function getTitle();
+
 }

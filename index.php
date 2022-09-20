@@ -7,7 +7,9 @@ $adverts = [
     ['rooms' => 1, 'category' => 'rent', 'price' => 150000, 'type' => 'kvartira', 'period' => 'day'],
 ];
 
-// Advert class
+/**
+ * abstract class Advert
+ */
 abstract class Advert
 {
     protected $rooms;
@@ -19,15 +21,19 @@ abstract class Advert
     function set_rooms($rooms) {
         $this->rooms = $rooms;
     }
+
     function set_category($category) {
         $this->category = $category;
     }
+
     function set_price($price) {
         $this->price = $price;
     }
+
     function set_type($type) {
         $this->type = $type;
     }
+
     function set_period($period) {
         $this->period = $period;
     }
@@ -35,45 +41,32 @@ abstract class Advert
     function get_rooms() {
         return $this->rooms;
     }
+
     function get_category() {
         return $this->category;
     }
+
     function get_price() {
         return $this->price;
     }
+
     function get_type() {
         return $this->type;
     }
+
     function get_period() {
         return $this->period;
     }
 }
 
-// creating title
-class create_title extends Advert {
-    function __construct($rooms, $category, $price, $type, $period) {
-        $this->set_rooms($rooms);
-        $this->set_category($category);
-        $this->set_price($price);
-        $this->set_type($type);
-        $this->set_period($period);
-    }
+/**
+ * class for formatting price
+ */
+class Format extends Advert {
 
-    function getTitle() {
-        if ($this->get_type() == "dom") {
-            $type_text = "-комнатный дом за ";
-        } else {
-            $type_text = "-комнатную квартиру за ";
-        }
-
-        if ($this->get_period() == "month") {
-            $period_text = " тг в месяц";
-        } else {
-            $period_text = " тг в сутки";
-        }
-
-        if($this->get_price() >= 1000000) {
-            $new_price = $this->price / 1000000;
+    function price_format($price) {
+        if($price >= 1000000) {
+            $new_price = $price / 1000000;
 
             if (ctype_digit($new_price)) {
                 $formatted_price = number_format($new_price, 0, '.', ' ');
@@ -82,22 +75,107 @@ class create_title extends Advert {
             }
 
         } else {
-            $formatted_price = number_format($this->price, 0, '.', ' ');
+            $formatted_price = number_format($price, 0, '.', ' ');
         }
-
-        if ($this->get_category() == "sale") {
-            $text = "Продам " . $this->get_rooms() . $type_text . $formatted_price . " млн. тг<br>";
-        } else {
-            $text = "Сдам " . $this->get_rooms() . $type_text . $formatted_price . $period_text ."<br>";
-        }
-
-        return $text;
+        return $formatted_price;
     }
 }
 
-// insert and print titles
-for ($i = 0; $i < count($adverts); $i++) {
+/**
+ * RentAdvert class for realize rent title
+ */
+class RentAdvert extends Advert {
 
-    $title = new create_title($adverts[$i]['rooms'], $adverts[$i]['category'], $adverts[$i]['price'], $adverts[$i]['type'], $adverts[$i]['period']);
-    echo $title->getTitle();
+    const TYPE = "dom";
+    const PERIOD = "month";
+
+    function __construct($rooms, $category, $price, $type, $period) {
+        $this->set_rooms($rooms);
+        $this->set_category($category);
+        $this->set_price($price);
+        $this->set_type($type);
+        $this->set_period($period);
+    }
+
+    function isTypeDom() {
+        return self::TYPE == $this->get_type();
+    }
+
+    function isPeriodMonth() {
+        return self::PERIOD == $this->get_period();
+    }
+
+    function getTitle() {
+
+        if ($this->isTypeDom()) {
+            $type_text = "-комнатный дом за ";
+        } else {
+            $type_text = "-комнатную квартиру за ";
+        }
+
+        if ($this->isPeriodMonth()) {
+            $period_text = " тг в месяц";
+        } else {
+            $period_text = " тг в сутки";
+        }
+
+        $formatted_price = new Format;
+
+        return "Сдам " . $this->get_rooms() . $type_text . $formatted_price->price_format($this->price) . $period_text ."<br>";
+    }
+}
+
+/**
+ * SaleAdvert class for realize sale title
+ */
+class SaleAdvert extends Advert {
+
+    const TYPE = "dom";
+    const PERIOD = "month";
+
+    function __construct($rooms, $category, $price, $type) {
+        $this->set_rooms($rooms);
+        $this->set_category($category);
+        $this->set_price($price);
+        $this->set_type($type);
+    }
+
+    function isTypeDom() {
+        return self::TYPE == $this->get_type();
+    }
+
+    function isPeriodMonth() {
+        return self::PERIOD == $this->get_period();
+    }
+
+    function getTitle() {
+
+        if ($this->isTypeDom()) {
+            $type_text = "-комнатный дом за ";
+        } else {
+            $type_text = "-комнатную квартиру за ";
+        }
+
+        if ($this->isPeriodMonth()) {
+            $period_text = " тг в месяц";
+        } else {
+            $period_text = " тг в сутки";
+        }
+
+        $formatted_price = new Format;
+        return "Продам " . $this->get_rooms() . $type_text . $formatted_price->price_format($this->price) . " млн. тг<br>";
+    }
+}
+
+/**
+ * insert data and print titles
+ */
+foreach ($adverts as $ad) {
+    if ($ad['category'] == 'sale') {
+        $title = new SaleAdvert($ad['rooms'], $ad['category'], $ad['price'], $ad['type']);
+        echo $title->getTitle();
+    } else {
+        $title = new RentAdvert($ad['rooms'], $ad['category'], $ad['price'], $ad['type'], $ad['period']);
+        echo $title->getTitle();
+    }
 }

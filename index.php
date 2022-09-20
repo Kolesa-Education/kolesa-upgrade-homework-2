@@ -13,16 +13,11 @@ $adverts = [
     $domRentAdv = new RentAdvert($adverts[2]['rooms'],$adverts[2]['category'], $adverts[2]['price'], $adverts[2]['type'], $adverts[2]['period']);
     $kvartiraRentAdv = new RentAdvert($adverts[3]['rooms'],$adverts[3]['category'], $adverts[3]['price'], $adverts[3]['type'], $adverts[3]['period']);
 
-    echo($domSaleAdv->getTitle());
-    echo($kvartiraSaleAdv->getTitle());
-    echo($domRentAdv->getTitle());
-    echo($kvartiraRentAdv->getTitle());
-
     $advertsArray = [];
     array_push($advertsArray, $domSaleAdv, $kvartiraSaleAdv, $domRentAdv, $kvartiraRentAdv);
     
     foreach($advertsArray as $value){
-        $value->{'getTitle'}();
+        print_r($value->getTitle());
     }
 ?>
 

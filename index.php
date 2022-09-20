@@ -5,6 +5,8 @@ $adverts = [
     ['rooms' => 2, 'category' => 'sale', 'price' => 21500000, 'type' => 'kvartira'],
     ['rooms' => 2, 'category' => 'rent', 'price' => 200000, 'type' => 'kvartira', 'period' => 'month'],
     ['rooms' => 1, 'category' => 'rent', 'price' => 15000, 'type' => 'kvartira', 'period' => 'day'],
+    ['rooms' => 2, 'category' => 'sale', 'price' => 21500000], // test error
+    ['rooms' => 1, 'category' => 'rent', 'price' => 15000, 'type' => 'kvartira'], // test error
 ];
 
 if (count($adverts) == 0) {

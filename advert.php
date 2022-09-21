@@ -7,18 +7,20 @@ $adverts = [
     ['rooms' => 1, 'category' => 'rent', 'price' => 150000, 'type' => 'kvartira', 'period' => 'day'],
 ];
 
+interface advertInterface
+{
+    public function getTitle();
+}
+
 abstract class Advert
 {
     protected $rooms;
-    protected $category;
     protected $price;
     protected $type;
-    protected $period;
 
-    public function __construct($rooms, $category, $price, $type)
+    public function __construct($rooms, $price, $type)
     {
         $this->setRooms($rooms);
-        $this->setCategory($category);
         $this->setPrice($price);
         $this->setType($type);
     }
@@ -40,36 +42,16 @@ abstract class Advert
     }
 
     /**
-     * @param mixed $category
-     */
-    public function setCategory($category)
-    {
-        if ($category == "sale") {
-            $this->category = "Продам";
-        };
-        if ($category == "rent") {
-            $this->category = "Сдам";
-        }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * @param mixed $price
      */
     public function setPrice($price)
     {
-        if ($price < 999999) {
+        if ($price < 999999 && is_numeric($price)) {
             $this->price = "за " . number_format($price, 0, ' ', ' ') . " " . "тг";
-        };
-        if ($price > 999999) {
+        } elseif ($price > 999999 && is_numeric($price)) {
             $this->price = "за " . $price / 1000000 . " " . "млн. тг";
+        } else {
+            $this->price = "Неправильный ввод параметра";
         }
     }
 
@@ -88,8 +70,7 @@ abstract class Advert
     {
         if ($type == "dom") {
             $this->type = "-комнатный дом";
-        };
-        if ($type == "kvartira") {
+        } elseif ($type == "kvartira") {
             $this->type = "-комнатную квартиру";
         }
     }
@@ -101,32 +82,29 @@ abstract class Advert
     {
         return $this->type;
     }
-
-
-    abstract public function getTitle();
 }
 
-;
-
-class SaleAndRent extends Advert
+class rentHouse extends Advert implements advertInterface
 {
-    public function __construct($rooms, $category, $price, $type, $period = null)
+    protected $period;
+    protected $category;
+
+    public function __construct($rooms, $price, $type, $period, $category)
     {
-        parent::__construct($rooms, $category, $price, $type);
+        parent::__construct($rooms, $price, $type);
         $this->setPeriod($period);
+        $this->setCategory($category);
     }
 
     /**
-     * @param mixed|null $period
+     * @param mixed $period
      */
     public function setPeriod($period)
     {
         if ($period == "month") {
             $this->period = 'в месяц';
-        } elseif ($period == "day") {
-            $this->period = 'в месяц';
         } else {
-            $this->period = null;
+            $this->period = 'в сутки';
         }
     }
 
@@ -137,21 +115,71 @@ class SaleAndRent extends Advert
     {
         return $this->period;
     }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = "Сдам";
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
     public function getTitle()
     {
-        if (!isset($this->period)) {
-            return "$this->category $this->rooms$this->type $this->price" . PHP_EOL;
-        } else {
-            return "$this->category $this->rooms$this->type $this->price $this->period" . PHP_EOL;
-        }
+        return "$this->category $this->rooms$this->type $this->price $this->period" . PHP_EOL;
     }
 }
 
+class saleHouse extends Advert implements advertInterface
+{
+    protected $category;
+
+    public function __construct($rooms, $price, $type, $category)
+    {
+        parent::__construct($rooms, $price, $type);
+        $this->setCategory($category);
+    }
+
+    /**
+     * @param mixed $category
+     */
+    public function setCategory($category)
+    {
+        $this->category = "Продам";
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    public function getTitle()
+    {
+        return "$this->category $this->rooms$this->type $this->price" . PHP_EOL;
+    }
+}
+
+//$rentHouse = new rentHouse(5, 250000, 'kvartira', "day", "rent");
+//echo $rentHouse->getTitle();
+
 foreach ($adverts as $advert) {
     if (!isset($advert['period'])) {
-        $saleAndRent = new SaleAndRent($advert['rooms'], $advert['category'], $advert['price'], $advert['type']);
-    } else {
-        $saleAndRent = new SaleAndRent($advert['rooms'], $advert['category'], $advert['price'], $advert['type'], $advert['period']);
+        $saleHouse = new saleHouse($advert['rooms'], $advert['price'], $advert['type'], $advert['category']);
+        echo $saleHouse->getTitle();
     }
-    echo $saleAndRent->getTitle();
+    if (isset($advert['period'])){
+        $rentHouse = new rentHouse($advert['rooms'], $advert['price'], $advert['type'], $adverts['period'], $advert['category']);
+        echo $rentHouse->getTitle();
+    }
 }

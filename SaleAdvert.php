@@ -1,26 +1,17 @@
 <?php
 
-class SaleAdvert implements Advert {
-    private string $category;
-
+class SaleAdvert extends Advert {
     public function __construct(?int $rooms = null, ?string $category = 'sale', ?int $price = null, 
-                                ?string $type = null, ?string $period = null) {
+                                ?string $type = null) {
         $this->rooms = $rooms;
         $this->category = $category;
         $this->price = $price;
         $this->type = $type;
-        $this->period = $period;
     }
 
     public function getTitle(): string {
-        $outputPrice = ($this->price > 1000000) ? ($this->price / 1000000 . " млн.") : ($this->price);
-        $outputType = ($this->type == "dom") ? "-комнатный дом" : "-комнатную квартиру";
-        $output = "Продам " . $this->rooms . $outputType . " за " . $outputPrice . " тг";
-        if (!is_null($this->period)) {
-            $outputPeriod = ($this->period == "month") ? "месяц" : "сутки";
-            return $output . " в " . $outputPeriod . "\n";
-        } else {
-            return $output . "\n";
-        }
+        $outputPrice = $this->getPrice();
+        $outputType = $this->getType();
+        return "Продам " . $this->rooms . $outputType . " за " . $outputPrice . " тг" . "\n";
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-class RentAdvert implements Advert {
-    private string $category;
-
+class RentAdvert extends Advert {
+    protected string $period;
+    
     public function __construct(?int $rooms = null, ?string $category = 'rent', ?int $price = null, 
                                 ?string $type = null, ?string $period = null) {
         $this->rooms = $rooms;
@@ -13,8 +13,8 @@ class RentAdvert implements Advert {
     }
 
     public function getTitle(): string {
-        $outputPrice = ($this->price > 1000000) ? ($this->price / 1000000 . " млн.") : ($this->price);
-        $outputType = ($this->type == "dom") ? "-комнатный дом" : "-комнатную квартиру";
+        $outputPrice = $this->getPrice();
+        $outputType = $this->getType();
         $output = "Сдам " . $this->rooms . $outputType . " за " . $outputPrice . " тг";
         if (!is_null($this->period)) {
             $outputPeriod = ($this->period == "month") ? "месяц" : "сутки";

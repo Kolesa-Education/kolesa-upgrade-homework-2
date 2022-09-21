@@ -112,10 +112,9 @@ class Advert {
             return sprintf("Сдам %s-комнатную %s за %s тг в %s\n",
                 $this->rooms, $this->type,
                 ($this->price >= 1000000) ? ($this->price/1000000 . " млн.") : $this->price, $this->period);
-        } else {
-            return sprintf("Продам %s-комнатный %s за %sтг\n",$this->rooms, $this->type,
-                ($this->price >= 1000000) ? ($this->price/1000000 . " млн.") : $this->price);
         }
+        return sprintf("Продам %s-комнатный %s за %sтг\n",$this->rooms, $this->type,
+                ($this->price >= 1000000) ? ($this->price/1000000 . " млн.") : $this->price);
     }
 }
 

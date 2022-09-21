@@ -4,6 +4,8 @@
     <list default="true" id="71106f28-9329-4027-9037-594c95b57745" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/kolesa-upgrade-homework-2/AbstractAdvert.php" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/kolesa-upgrade-homework-2/Rent.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/kolesa-upgrade-homework-2" beforeDir="false" afterPath="$PROJECT_DIR$/kolesa-upgrade-homework-2" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +62,7 @@
       <workItem from="1663486999170" duration="9478000" />
       <workItem from="1663595715787" duration="2822000" />
       <workItem from="1663678159276" duration="8169000" />
-      <workItem from="1663686453302" duration="3059000" />
+      <workItem from="1663686453302" duration="5980000" />
     </task>
     <servers />
   </component>

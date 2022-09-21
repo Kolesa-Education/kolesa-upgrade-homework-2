@@ -3,14 +3,14 @@
 class Advert
 {
     protected $rooms;
-	protected $category;
+    protected $category;
     protected $price;
     protected $type;
-	
-	public function __construct(int $rooms, string $category, float $price, string $type)
+
+    public function __construct ($rooms, $category, $price, $type)
     {
         $this->rooms = $rooms;
-		$this->category = $category;
+        $this->category = $category;
         $this->price = $price;
         $this->type = $type;
     }
@@ -24,12 +24,9 @@ class Advert
             return number_format($price, 0, '.', ' ') . ' тг';
         }
         return $price;
-    }	
-}
+    }
 
-class saleAdvert extends Advert
-{
-    public function getTitle(): string
+    public function getTitle (): string
     {
         if ($this->type == 'dom') {
             return "Продам " . $this->rooms . "-комнатный дом за " . $this->formatPrice($this->price) . "<br>";
@@ -39,19 +36,18 @@ class saleAdvert extends Advert
     }
 }
 
-class rentAdvert extends Advert
+class RentAdvert extends Advert
 {
     protected $period;
 
-    public function __construct(int $rooms, string $category, float $price, string $type, string $period)
+    public function __construct ($rooms, $category, $price, $type, $period)
     {
-        parent::__construct($rooms, $category, $price, $type);
+        parent::__construct ($rooms, $category, $price, $type);
         $this->period = $period;
     }
-
     public function getTitle(): string
     {
-        if ($this->period == 'month') {
+        if ($this->period == 'month'){
             return "Сдам " . $this->rooms . "-комнатную квартиру за " . $this->formatPrice($this->price) . " в месяц" . "<br>";
         } else {
             return "Сдам " . $this->rooms . "-комнатную квартиру за " . $this->formatPrice($this->price) . " в сутки" . "<br>";
@@ -66,12 +62,13 @@ $adverts = [
     ['rooms' => 1, 'category' => 'rent', 'price' => 15000, 'type' => 'kvartira', 'period' => 'day'],
 ];
 
-foreach ($adverts as $advert) {
-    if ($advert['category'] == 'sale') {
-        $advert = new saleAdvert($advert['rooms'], $advert['category'], $advert['price'], $advert['type']);
+foreach ($adverts as $advert)
+{
+    if (!isset($advert['period'])) {
+        $advert = new Advert ($advert['rooms'], $advert['category'], $advert['price'], $advert['type']);
         echo $advert->getTitle();
     } else {
-        $advert = new rentAdvert($advert['rooms'], $advert['category'], $advert['price'], $advert['type'], $advert['period']);
+        $advert = new RentAdvert ($advert['rooms'], $advert['category'], $advert['price'], $advert['type'], $advert['period']);
         echo $advert->getTitle();
     }
 }

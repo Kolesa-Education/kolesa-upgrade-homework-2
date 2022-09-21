@@ -1,12 +1,28 @@
 <?php
-    Class Advert {
-        private $rooms = -1;
-        private $category = "";
-        private $price = -1;
-        private $type = "";
-        private $period = null;
+    abstract class Advert {
+        protected $rooms = -1;
+        protected $category = "";
+        protected $price = -1;
+        protected $type = "";
+        protected $period = null;
 
-        function __construct($rooms, $category, $price, $type, $period = null) {
+        public function getCategoryTitle() {
+            return ($this->category == 'sale') ? "Продам " : "Сдам ";
+        }
+
+        public function getTypeTitle() {
+            return ($this->type == "dom") ? ($this->rooms . "-комнатный дом за ") : ($this->rooms . "-комнатную квартиру за "); 
+        }
+
+        public function getPriceTitle() {
+            return ($this->price >= 1000000) ? ($this->price / 1000000 . " млн. тг") : ($this->price . " тг");
+        }
+    }
+
+    Class FlatAdvert extends Advert {
+        protected $period = null;
+
+        function __construct($rooms, $category, $price, $type, $period) {
             $this->rooms = $rooms;
             $this->category = $category;
             $this->price = $price; 
@@ -14,23 +30,28 @@
             $this->period = $period; 
         }   
 
-        public function properMessage() {
-            $isMillion = ($this->price >= 1000000) ? true : false; 
-            $typeMessage = ($this->type == "dom") ? ($this->rooms . "-комнатный дом за ") : ($this->rooms . "-комнатную квартиру за "); 
-            $categoryMessage = ($this->category == 'sale') ? "Продам " : "Сдам ";
-            $this->price = ($isMillion) ? ($this->price / 1000000) : $this->price; 
-            $priceMessage = ($isMillion) ? ($this->price . " млн. тг") : ($this->price . " тг");
-            $periodMessage = "";
+        public function getPeriodMessage() {
+            if (!$this->period) return "";
 
-            if ($this->period != null) {
-                $periodMessage = ($this->period == "month") ? " в месяц" : " в сутки"; 
-            }
-
-            return $categoryMessage . $typeMessage . $priceMessage . $periodMessage;
+            return ($this->period == "month") ? " в месяц" : " в сутки"; 
         }
 
         public function getTitle() {
-            return $this->properMessage();
+            return $this->getCategoryTitle() . $this->getTypeTitle() . $this->getPriceTitle() . $this->getPeriodMessage();
+        }
+    }
+
+    Class HouseAdvert extends Advert { 
+
+        function __construct($rooms, $category, $price, $type) {
+            $this->rooms = $rooms;
+            $this->category = $category;
+            $this->price = $price; 
+            $this->type = $type;
+        } 
+
+        public function getTitle() {
+            return $this->getCategoryTitle() . $this->getTypeTitle() . $this->getPriceTitle();
         }
     }
 
@@ -43,13 +64,11 @@
     $advertsObj = [];
 
     foreach ($adverts as $add) {
-        $rooms = $add['rooms'];
-        $category = $add['category'];
-        $price = $add['price'];
-        $type = $add['type'];
-        $period = $add['period']; 
-        $add = new Advert($rooms, $category, $price, $type, $period);
-        array_push($advertsObj, $add);
+        if ($add['period'] == null) {
+            array_push($advertsObj, new HouseAdvert($add['rooms'], $add['category'], $add['price'], $add['type']));
+        } else {
+            array_push($advertsObj, new FlatAdvert($add['rooms'], $add['category'], $add['price'], $add['type'], $add['period']));
+        }
     }
 
 ?> 
@@ -68,7 +87,7 @@
         <div class="wrapper__adds">
             <?php   
                 foreach ($advertsObj as $addObj) {
-                    echo $addObj->getTitle() . PHP_EOL . "</br>";
+                    echo $addObj->getTitle() . "</br>";
                 }
             ?>
         </div>

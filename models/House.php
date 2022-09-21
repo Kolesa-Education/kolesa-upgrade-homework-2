@@ -10,9 +10,15 @@ class House extends Advert
 
     public function getTitle()
     {
-            $newPrice = $this->getPrice();
-            $newPrice /= 1000000;
-            return "Продам $this->rooms-комнатный дом за $newPrice млн. тг <br>";
 
+            if ($this->type=="dom") {
+                $newPrice = $this->getPrice();
+                $newPrice /= 1000000;
+                return "Продам $this->rooms-комнатный дом за $newPrice млн. тг <br>";
+            }else {
+                $newPrice = $this->getPrice();
+                $newPrice /= 1000000;
+                return "Продам $this->rooms-комнатную квартиру за $newPrice млн. тг <br>";
+            }
     }
 }

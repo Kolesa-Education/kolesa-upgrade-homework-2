@@ -40,10 +40,9 @@ $adverts = [
 
 
 $housesArray=[];
-
 foreach ($adverts as $advert) {
-    if (empty($advert["period"])) {
-        $new_advert = new House($advert["rooms"], $advert["price"], $advert["type"]);
+    if ($advert["category"]=='sale') {
+        $new_advert = new House($advert["rooms"],  $advert["price"], $advert["type"]);
     } else {
         $new_advert = new Flat($advert["rooms"],  $advert["price"], $advert["type"], $advert["period"]);
     }

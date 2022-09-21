@@ -3,62 +3,70 @@ declare(strict_types=1);
 
 abstract class Advert {
     protected int $rooms;
-    protected string $category;
     protected int $price;
+    protected string $type;
 
-
-    public function __construct(int $rooms,string $category, int $price)
+    /**
+     * @param int $rooms
+     * @param string $price
+     * @param int $type
+     */
+    public function __construct(int $rooms, int $price, string $type)
     {
         $this->rooms = $rooms;
-        $this->category = $category;
         $this->price = $price;
+        $this->type = $type;
     }
 
-
-    public function getRooms()
+    /**
+     * @return int
+     */
+    public function getRooms(): int
     {
         return $this->rooms;
     }
 
     /**
-     * @param mixed $rooms
+     * @param int $rooms
      */
-    public function setRooms($rooms): void
+    public function setRooms(int $rooms): void
     {
         $this->rooms = $rooms;
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param mixed $category
-     */
-    public function setCategory($category): void
-    {
-        $this->category = $category;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPrice()
+    public function getPrice(): int
     {
         return $this->price;
     }
 
     /**
-     * @param mixed $price
+     * @param int $price
      */
-    public function setPrice($price): void
+    public function setPrice(int $price): void
     {
         $this->price = $price;
     }
+
+    /**
+     * @return string
+     */
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType(string $type): void
+    {
+        $this->type = $type;
+    }
+
+
 
 
     abstract public function getTitle();

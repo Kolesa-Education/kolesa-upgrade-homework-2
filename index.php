@@ -82,17 +82,6 @@ abstract class Advert {
     }
   }
 
-  public function getFormattedPeriod($period) : string
-  {
-    switch($period) {
-      case $period === "month":
-        return "месяц";
-      case $period === "day":
-        return "сутки";
-      default:
-        return "договорной срок";
-    }
-  }
 }
 
 class SaleAdvertFormatter extends Advert implements AdvertFormatter 
@@ -126,6 +115,18 @@ class RentAdvertFormatter extends Advert implements AdvertFormatter
   public function getPeriod() : string
   {
     return $this->period;
+  }
+
+  public function getFormattedPeriod($period) : string
+  {
+    switch($period) {
+      case $period === "month":
+        return "месяц";
+      case $period === "day":
+        return "сутки";
+      default:
+        return "договорной срок";
+    }
   }
   public function getTitle() : string
   {

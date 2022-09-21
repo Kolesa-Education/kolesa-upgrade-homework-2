@@ -1,7 +1,7 @@
 <?php
 
 class SaleAdvert extends Advert {
-    public function __construct(?int $rooms = null, ?string $category = 'sale', ?int $price = null, 
+    public function __construct(?int $rooms = null, string $category = 'sale', ?int $price = null, 
                                 ?string $type = null) {
         $this->rooms = $rooms;
         $this->category = $category;

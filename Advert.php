@@ -1,10 +1,10 @@
 <?php 
 
 abstract class Advert {
-    protected int $rooms;
+    protected ?int $rooms;
     protected string $category;
-    protected int $price;
-    protected string $type;
+    protected ?int $price;
+    protected ?string $type;
 
     public function getTitle(): string { }
 

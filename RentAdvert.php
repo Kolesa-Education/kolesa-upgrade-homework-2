@@ -1,9 +1,9 @@
 <?php
 
 class RentAdvert extends Advert {
-    protected string $period;
+    protected ?string $period;
     
-    public function __construct(?int $rooms = null, ?string $category = 'rent', ?int $price = null, 
+    public function __construct(?int $rooms = null, string $category = 'rent', ?int $price = null, 
                                 ?string $type = null, ?string $period = null) {
         $this->rooms = $rooms;
         $this->category = $category;

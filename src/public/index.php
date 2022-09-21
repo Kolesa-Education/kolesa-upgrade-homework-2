@@ -1,7 +1,14 @@
 <?php
-include_once 'Distributor.php';
-include_once 'Advert.php';
-include_once 'productsToAdvert.php';
+
+use AppClasses\Distributor as Distributor;
+
+spl_autoload_register(function ($className) {
+    $file = __DIR__ . '\\' . $className . '.php';
+    $file = str_replace('\\', DIRECTORY_SEPARATOR, $file);
+    if (file_exists($file)) {
+        include $file;
+    }
+});
 
 $adverts = [
     ['rooms' => 5, 'category' => 'sale', 'price' => 55000000, 'type' => 'dom'],
@@ -11,4 +18,6 @@ $adverts = [
 ];
 
 $distributor = new Distributor($adverts);
-$distributor->printAdvertTitles();
+foreach ($distributor->getAdverts()  as $advert) {
+    echo $advert->getTitle() . "<br>\n";
+}

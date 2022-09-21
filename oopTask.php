@@ -128,11 +128,12 @@ $adverts = [
 
 foreach ($adverts as $item)
 {
+    $period = $item['period'] ?? "";
     if ($item['category'] == 'rent') {
-        $advert = new Advert($item['rooms'], $item['category'], $item['price'], $item['type'], $item['period']);
+        $advert = new Advert($item['rooms'], $item['category'], $item['price'], $item['type'], $period);
     } else {
-        $advert = new Advert($item['rooms'], $item['category'], $item['price'], $item['type'], '');
+        $advert = new Advert($item['rooms'], $item['category'], $item['price'], $item['type'], $period);
     }
-     echo $advert->getTitle();
+    echo $advert->getTitle();
 }
 ?>

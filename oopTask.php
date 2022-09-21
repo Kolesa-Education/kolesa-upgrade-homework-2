@@ -130,10 +130,9 @@ foreach ($adverts as $item)
 {
     if ($item['category'] == 'rent') {
         $advert = new Advert($item['rooms'], $item['category'], $item['price'], $item['type'], $item['period']);
-        echo $advert->getTitle();
     } else {
         $advert = new Advert($item['rooms'], $item['category'], $item['price'], $item['type'], '');
-        echo $advert->getTitle();
     }
+     echo $advert->getTitle();
 }
 ?>

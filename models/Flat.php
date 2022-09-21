@@ -15,8 +15,6 @@ class Flat extends Advert {
     }
 
 
-
-
     /**
      * @return mixed
      */
@@ -38,6 +36,8 @@ class Flat extends Advert {
     public function getTitle()
     {
         $newPeriod = $this->getPeriod();
+
+
         if ($newPeriod=="month") {
             return "Сдам $this->rooms-комнатную квартиру за $this->price  тг в месяц <br>";
         } else {

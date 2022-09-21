@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 class House extends Advert
 {
+
+
    public function __construct(int $rooms, int $price, string $type)
    {
        parent::__construct( $rooms,  $price, $type);

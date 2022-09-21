@@ -16,7 +16,6 @@
 require_once("Advert.php");
 require_once("AdvertList.php");
 require_once("FilterAdverts.php");
-require_once("NewFilterAdverts.php");
 
 $adverts = [
     ['rooms' => 5, 'category' => 'sale', 'price' => 55000000, 'type' => 'dom'],
@@ -42,12 +41,7 @@ $advertList = new AdvertsList($result);
 $advertList->show_all_adverts();
 echo "<br>";
 
-echo "Class NewFilterAdverts <br>";
-$newFilterAdverts = new NewFilterAdverts();
-$result = $newFilterAdverts->filter_adverts($adverts, ['room' => ['start' => 2, 'end' => 10], 'category' => 'sale',  'type' => "dom"]);
-$advertList = new AdvertsList($result);
-$advertList->show_all_adverts();
-echo "<br>";
+
 ?>
 
 </html>

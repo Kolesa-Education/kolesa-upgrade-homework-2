@@ -8,14 +8,7 @@ class Advert {
     private $period = null;
 
 
-    public function __construct($rooms, $category, $price, $type) {
-        $this->rooms = $rooms;
-        $this->category = $category;
-        $this->price = $price;
-        $this->type = $type;
-    }
-
-    public function __construct2($rooms, $category, $price, $type, $period) {
+    public function __construct($rooms, $category, $price, $type, $period) {
         $this->rooms = $rooms;
         $this->category = $category;
         $this->price = $price;
@@ -27,8 +20,11 @@ class Advert {
         $isMillion = ($this->price >= 1000000) ? true : false;
         $categoryMessage = ($this->category == "sale") ? "Продам " : "Сдам ";
         $typeMessage = ($this->type == "dom") ? ($this->rooms."-комнатный дом ") : $this->rooms."-комнатную квартиру ";
-        $priceMessage = ($isMillion == true) ? ($this->price / 1000000)." млн. тг" : $this->price." тг";
-        $periodMessage = ($this->period != null) ? $this->period : "";
+        $priceMessage = ($isMillion == true) ? ($this->price / 1000000)." млн. тг " : $this->price." тг ";
+
+        if ($this->period != null) {
+            $periodMessage = ($this->period == "day" ? "в день" : "в месяц");
+        }
 
         return $categoryMessage . $typeMessage . $priceMessage . $periodMessage;
     }

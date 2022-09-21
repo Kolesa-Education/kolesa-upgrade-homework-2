@@ -6,10 +6,13 @@
             "email": "sidash.roman@mail.ru"
         }
     ],
-    "require": {},
     "autoload": {
         "psr-4": {
             "Advert\\": "src/"
-        }
-    }
+        },
+        "files": [
+            "src/rentPeriods.php"
+        ]
+    },
+    "require": {}
 }

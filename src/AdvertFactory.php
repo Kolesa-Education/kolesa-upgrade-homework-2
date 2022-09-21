@@ -20,7 +20,7 @@ class AdvertFactory
             if ($advert['category'] == 'sale') {
                 $category = new Sale();
             } elseif ($advert['category'] == 'rent') {
-                if (!in_array($advert['period'], Period::RENT_PERIODS)) {
+                if (!in_array($advert['period'], RENT_PERIODS)) {
                     throw new Exception('Invalid period');
                 }
 

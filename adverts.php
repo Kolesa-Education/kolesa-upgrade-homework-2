@@ -103,7 +103,7 @@ function prettifyAd($ad): string {
 
     $adHeading = $prettifiedCategory . " "
     . $prettifiedRooms . " " . $prettifiedType
-    . " за {$prettifiedPrice} тг";
+    . " за $prettifiedPrice тг";
     
     if ($adObjCategory === 'rent') {
         $adObjPeriod = $ad->getPeriod();
@@ -111,7 +111,7 @@ function prettifyAd($ad): string {
             'month' => 'в месяц',
             'day' => 'в сутки',
         };
-        $adHeading .= " {$prettifiedPeriod}";
+        $adHeading .= " $prettifiedPeriod";
     }
 
     return $adHeading;

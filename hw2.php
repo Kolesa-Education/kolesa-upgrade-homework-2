@@ -10,7 +10,7 @@ $adverts = [
 ];
 
 
-$objectAdverts = array();
+$objectAdverts = [];
 
 foreach ($adverts as $advert) {
     $period = array_key_exists('period', $advert) ? $advert['period'] : '';

@@ -28,19 +28,19 @@ class RealEstateTypes implements printable
         if (!isset(self::$instances[$cls])) {
             self::$instances[$cls] = new static();
         }
-
         return self::$instances[$cls];
     }
 
-    const REAL_ESTATE_TYPES = array(
+    const REAL_ESTATE_TYPES = [
         'dom' => '-комнатный дом',
         'kvartira' => '-комнатную квартиру',
-    );
+    ];
 
     public static function checkEstateType(string $estateType): bool
     {
-        if (!array_key_exists($estateType, self::REAL_ESTATE_TYPES))
+        if (!array_key_exists($estateType, self::REAL_ESTATE_TYPES)) {
             throw new Exception('ESTATE TYPE: ' . $estateType . "DOESN'T EXIST");
+        }
         return true;
     }
 

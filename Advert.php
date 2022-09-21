@@ -5,17 +5,17 @@ include("RealEstate.php");
 class Advert extends RealEstate
 {
 
-    const CATEGORIES = array(
+    const CATEGORIES = [
         'sale' => 'Продам',
         'rent' => 'Сдам',
-    );
+    ];
 
-    const PERIODS = array(
+    const PERIODS = [
         '' => '',
         'month' => 'в месяц',
         'day' => 'в сутки',
         'hour' => 'за час',
-    );
+    ];
 
     protected int $price;
     protected string $category;
@@ -31,41 +31,46 @@ class Advert extends RealEstate
         parent::__construct($estateType, $numberOfRooms);
         $this->setCategory($category);
         $this->setPrice($price);
-        if ($this->category == 'rent')
+        if ($this->category == 'rent') {
             $this->setPeriod($period);
-        else $this->period = '';
+        } else {
+            $this->period = '';
+        }
     }
 
     public function getTitle(): string
     {
-        return implode(' ', array(self::CATEGORIES[$this->category],
+        return implode(' ', [
+            self::CATEGORIES[$this->category],
             $this->getPrintableRealEstate(),
             $this->getPrintablePrice(),
             self::PERIODS[$this->period]
-        ));
+        ]);
     }
 
     private function getPrintablePrice(): string
     {
-        if ($this->price >= 1_000_000_000)
+        if ($this->price >= 1_000_000_000) {
             return round($this->price / 1_000_000_000, 2) . ' млрд. тг';
-        elseif ($this->price >= 1_000_000)
+        } elseif ($this->price >= 1_000_000) {
             return round($this->price / 1_000_000, 2) . ' млн. тг';
-        else
-            return number_format($this->price, 0, '.', ' ') . ' тг';
+        }
+        return number_format($this->price, 0, '.', ' ') . ' тг';
     }
 
     private static function checkCategory(string $category): bool
     {
-        if (!array_key_exists($category, self::CATEGORIES))
+        if (!array_key_exists($category, self::CATEGORIES)) {
             throw new Exception('CATEGORY: ' . $category . "DOESN'T EXIST");
+        }
         return true;
     }
 
     private static function checkPeriod(string $period): bool
     {
-        if (!array_key_exists($period, self::PERIODS) || $period == '')
+        if (!array_key_exists($period, self::PERIODS) || $period == '') {
             throw new Exception('PERIOD: ' . $period . "DOESN'T EXIST");
+        }
         return true;
     }
 
@@ -96,6 +101,6 @@ class Advert extends RealEstate
         } catch (Exception $e) {
             echo $e->getMessage();
         }
-        $this->price = $price;;
+        $this->price = $price;
     }
 }

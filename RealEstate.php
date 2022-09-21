@@ -38,8 +38,9 @@ class RealEstate
 
     protected function checkIsPosInt(int $number): bool
     {
-        if (!(is_int($number) and $number > 0))
+        if (!(is_int($number) and $number > 0)) {
             throw new Exception('NUMBER: ' . $number . " IS NOT POSITIVE OR INTEGER");
+        }
         return true;
     }
 

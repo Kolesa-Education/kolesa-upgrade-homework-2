@@ -41,5 +41,4 @@ class Advert{
         }
         return $result;
     }
-    
 }

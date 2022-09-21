@@ -9,12 +9,12 @@ $adverts = [
 
 class Advert
 {
-    private $rooms;
-    public $category;
-    public $price;
-    public $type;
+    private int $rooms;
+    private string $category;
+    private float $price;
+    private string $type;
 
-    public function __construct($rooms, $category, $price, $type)
+    public function __construct(int $rooms, string $category, float $price, string $type)
     {
         $this->rooms = $rooms;
         $this->category = $category;
@@ -49,7 +49,7 @@ class Advert
         }
     }
 
-    private function parse_price($size)
+    private function parse_price(int $size)
     {
         if ((strlen($this->price) > 6)) {
             $postfix = "млн";

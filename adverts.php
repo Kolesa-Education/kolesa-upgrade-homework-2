@@ -25,40 +25,19 @@ abstract class Adverts
         if (isset($advert["period"])) {
             $this->setPeriod($advert["period"]);
         }
+        return true;
     }
 
 
     protected function changePriceToString()
     {
         if ($this->price < 1000000) {
-            return $this->price . ". тг" . PHP_EOL;
+            return number_format($this->price, ".", " ") . " тг" . PHP_EOL;
         }
-        $buf = $this->price;
-        $zero = true;
-        $result = "";
-        for ($counter = 0; $buf > 0; $counter++) {
-            if ($counter < 6) {
-                if ($buf % 10 != 0) {
-                    if ($counter < 5) {
-                        return $this->price . ". тг" . PHP_EOL;
-                    }
-                    $zero = false;
-                }
-                if (!$zero) {
-                    $result = $buf % 10 . $result;
-                }
-                $buf = ($buf - $buf % 10) / 10;
-                continue;
-            }
-            if ($counter == 6 && $result != "") {
-                $result = $buf % 10 . "." . $result;
-                $buf = ($buf - $buf % 10) / 10;
-                continue;
-            }
-            $result = $buf % 10 . $result;
-            $buf = ($buf - $buf % 10) / 10;
+        if ($this->price % 10 ** 5 == 0) {
+            return $this->price / 10 ** 6 . " млн. тг";
         }
-        return $result . " млн. тг" . PHP_EOL;
+        return number_format($this->price, ".", " ") . " тг" . PHP_EOL;
     }
 
     public function setPeriod(string $period): void

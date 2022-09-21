@@ -1,21 +1,29 @@
 <?php
-require_once "AdvertsInterface.php";
+require_once "AdvertAbstract.php";
 
-class Adverts extends AdvertsInterface
+class Advert extends AdvertAbstract
 {
     private array $arr;
+    private int $price;
+    private string $type;
+    private int $rooms;
+
 
     public function __construct(array $arr)
     {
         $this->arr = $arr;
+        $this->price = $arr["price"];
+        $this->type = $arr['type'];
+        $this->rooms = $arr["rooms"];
+
     }
 
-    protected function checkPrice(): string
+    protected function FormatPrice(): string
     {
-        if ($this->arr["price"] > 9999999) {
-            return $this->arr["price"] / 1000000 . " млн";
+        if ($this->price > 9999999) {
+            return $this->price / 1000000 . " млн";
         } else {
-            return $this->arr['price'] . " тг";
+            return $this->price . " тг";
         }
     }
 
@@ -42,16 +50,16 @@ class Adverts extends AdvertsInterface
 
     protected function checkType(): string
     {
-        if ($this->arr["type"] == "kvartira") {
+        if ($this->type == "kvartira") {
             return "квартиру";
         } else {
             return "дом";
         }
     }
 
-    protected function checkRooms()
+    protected function checkRooms(): string
     {
-        if ($this->arr['type'] == "kvartira") {
+        if ($this->type == "kvartira") {
             return "комнатную";
         } else {
             return "комнатный";
@@ -60,7 +68,7 @@ class Adverts extends AdvertsInterface
 
     public function getTitle(): void
     {
-        $result = $this->checkCategory() . " " . $this->arr['rooms'] . "-" . $this->checkRooms() . " " . $this->checkType() . " за " . $this->checkPrice() . $this->checkPeriod();
+        $result = $this->checkCategory() . " " . $this->rooms . "-" . $this->checkRooms() . " " . $this->checkType() . " за " . $this->FormatPrice() . $this->checkPeriod();
         echo $result . PHP_EOL;
     }
 

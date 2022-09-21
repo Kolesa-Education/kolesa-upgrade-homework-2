@@ -1,5 +1,5 @@
 <?php
-require_once "Adverts.php";
+require_once "Advert.php";
 $adverts = [
     ['rooms' => 5, 'category' => 'sale', 'price' => 55000000, 'type' => 'dom'],
     ['rooms' => 2, 'category' => 'sale', 'price' => 21500000, 'type' => 'kvartira'],
@@ -8,7 +8,7 @@ $adverts = [
 ];
 
 foreach ($adverts as $arr){
-    $test=new Adverts($arr);
+    $test=new Advert($arr);
     $test->getTitle() ;
 }
 

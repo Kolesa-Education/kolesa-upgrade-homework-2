@@ -1,6 +1,6 @@
 <?php
 
-abstract class AdvertsInterface
+abstract class AdvertAbstract
 {
 
     protected abstract function checkCategory();

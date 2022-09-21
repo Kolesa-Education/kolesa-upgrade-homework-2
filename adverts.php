@@ -8,11 +8,14 @@ interface Ad {
     // Made interface for required methods implementing
     public function getCategory(): string;
     public function getAdType(): string;
-    public function getRooms(): int;
     public function getPrice(): int;
 }
 
-abstract class Advert implements Ad {
+interface RealEstate {
+    public function getRooms(): int;
+}
+
+abstract class Advert implements Ad, RealEstate {
     // Abstract base class with interface methods implementation
     protected $type;
     protected $rooms = 1;
@@ -43,30 +46,41 @@ abstract class Advert implements Ad {
 
 class SaleAd extends Advert {
     // Child class inherited base abstract class and set the category
-    public $category = 'sale';
+    public function __construct(string $type, int $rooms, int $price) {
+        parent::__construct($type, $rooms, $price);
+        $this->category = 'sale';
+    }
+
+    public function getCategory(): string {
+        return $this->category;
+    }
 }
 
 class RentAd extends Advert {
     // Child class inherited base abstract class
     // Sets the category, extends constructor and implement new method
-    public $category = 'rent';
-    private $period;
+    protected $period;
 
-    function __construct(string $type, int $rooms, int $price, string $period) {
+    public function __construct(string $type, int $rooms, int $price, string $period) {
         parent::__construct($type, $rooms, $price);
+        $this->category = 'rent';
         $this->period = $period;
     }
 
-    public function getPeriod() {
+    public function getCategory(): string {
+        return $this->category;
+    }
+
+    public function getPeriod(): string {
         return $this->period;
     }
 }
 
 /**
- * @param $array for checking arguments
+ * @param $array array that will be checked
  * @return bool
  */
-function checkArray($array) {
+function checkArray($array): bool {
     $checkBaseArgs =
     array_key_exists('category', $array) &&
     array_key_exists('type', $array) &&
@@ -87,7 +101,7 @@ function checkArray($array) {
 
 /**
  * Makes array with class based Objects.
- * @param $adverts - array with advertisements arrays.
+ * @param $adverts array with advertisements arrays.
  * @return array
  */
 function makeAdObjArray(array $adverts): array {
@@ -97,23 +111,18 @@ function makeAdObjArray(array $adverts): array {
             continue;
         }
 
-        $adCategory = $advert['category'];
-        $adType = $advert['type'];
-        $adPrice = $advert['price'];
-        $adRooms = $advert['rooms'];
-        if ($adCategory === 'sale') {
+        if ($advert['category'] === 'sale') {
             $adObj = new SaleAd(
-                type: $adType,
-                rooms: $adRooms,
-                price: $adPrice
+                type: $advert['type'],
+                rooms: $advert['rooms'],
+                price: $advert['price']
             );
-        } elseif ($adCategory === 'rent') {
-            $adPeriod = $advert['period'];
+        } elseif ($advert['category'] === 'rent') {
             $adObj = new RentAd(
-                type: $adType,
-                rooms: $adRooms,
-                price: $adPrice,
-                period: $adPeriod
+                type: $advert['type'],
+                rooms: $advert['rooms'],
+                price: $advert['price'],
+                period: $advert['period']
             );
         } else {
             exit("Invalid adverts array!");
@@ -123,20 +132,24 @@ function makeAdObjArray(array $adverts): array {
     return $objArray;
 }
 
-function prettifyNumber($n) {
+function prettifyNumber($n): string {
     $n = (0+str_replace(",","",$n));
 
-    if(!is_numeric($n)) return false;
+    if(!is_numeric($n)) return 0;
     
-    if ($n>1000000000000) return round(($n/1000000000000),1).' трлн.';
-    else if($n>1000000000) return round(($n/1000000000),1).' млрд.';
-    else if($n>1000000) return round(($n/1000000),1).' млн.';
+    if ($n>1000000000000) {
+        return round(($n/1000000000000),1).' трлн.';
+    } else if ($n>1000000000) {
+        return round(($n/1000000000),1).' млрд.';
+    } else if($n>1000000) {
+        return round(($n/1000000),1).' млн.';
+    }
     // else if($n>1000) return round(($n/1000),1).' тысяч';
-    
+
     return strval(number_format($n, thousands_separator: ' '));
 }
 
-function prettifyAd($ad) {
+function prettifyAd($ad): string {
     $adObjCategory = $ad->getCategory();
     $adObjRooms = $ad->getRooms();
     $adObjType = $ad->getAdType();

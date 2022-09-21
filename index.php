@@ -1,6 +1,8 @@
 <?php
 
-require_once('Advert.php');
+spl_autoload_register(function ($class_name) {
+    include $class_name . '.php';
+});
 
 $adverts = [
     ['rooms' => 5, 'category' => 'sale', 'price' => 55000000, 'type' => 'dom'],
@@ -11,11 +13,11 @@ $adverts = [
 
 foreach ($adverts as $advert) {
     if ($advert['category'] == 'sale') {
-        $ad = new SaleAdvert($advert['rooms'], $advert['category'], $advert['price'], $advert['type']);
-        echo $ad->getTitle();
+        $saleAdvert = new SaleAdvert($advert['rooms'], $advert['category'], $advert['price'], $advert['type']);
+        echo $saleAdvert->getTitle();
     }
     if ($advert['category'] == 'rent') {
-        $ad = new RentAdvert($advert['rooms'], $advert['category'], $advert['price'], $advert['type']);
-        echo $ad->getTitle();
+        $rentAdvert = new RentAdvert($advert['rooms'], $advert['category'], $advert['price'], $advert['type'], $advert['period']);
+        echo $rentAdvert->getTitle();
     }
 }

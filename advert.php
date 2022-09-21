@@ -21,11 +21,17 @@ class Advert{
         if ($this->price > 1000000) {
             $price2 = (string) $this->price / 1000000 . ' млн.';
         }
+        $result = "";
+        if ($this->category == "rent") {
+            $result .= "Сдам ";
+        } else {
+            $result .= "Продам ";
+        }
         if ($this->type == "kvartira"){
-            $result = "Продам " . $this->rooms . "-комнатную квартиру за " . $price2 . "тг";
+            $result .= $this->rooms . "-комнатную квартиру за " . $price2 . " тг";
         }
         else {
-            $result = "Продам " . $this->rooms . "-комнатный дом за " . $price2 . "тг";
+            $result .= $this->rooms . "-комнатный дом за " . $price2 . " тг";
         }
         if ($this->period == "month") {
             $result .= " в месяц";

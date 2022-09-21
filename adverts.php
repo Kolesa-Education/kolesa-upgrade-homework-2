@@ -9,29 +9,31 @@ $adverts = [
 
 abstract class Adverts
 {
-
     private int $rooms;
     private string $category;
     private int $price;
     private string $type;
     private string $period;
     protected bool $status = true;
+    protected string $nRoomsDom = "-комнатный дом за ";
+    protected string $nRoomsKv = "-комнатную квартиру за ";
+    protected string $domType = "dom";
 
     function __construct($advert)
     {
         if (!isset($advert["rooms"]) || !isset($advert["category"]) || !isset($advert["price"]) || !isset($advert["type"])) {
             $this->status = false;
+
             return;
         }
         $this->setRooms($advert["rooms"]);
         $this->setCategory($advert["category"]);
-        $this->setPrice ($advert["price"]);
+        $this->setPrice($advert["price"]);
         $this->setType($advert["type"]);
         if (isset($advert["period"])) {
             $this->setPeriod($advert["period"]);
         }
     }
-
 
     protected function changePriceToString()
     {
@@ -41,6 +43,7 @@ abstract class Adverts
         if ($this->price % 10 ** 5 == 0) {
             return $this->price / 10 ** 6 . " млн. тг";
         }
+
         return number_format($this->price, 0, ".", " ") . " тг";
     }
 
@@ -57,13 +60,15 @@ abstract class Adverts
 
     public function setRooms(int $rooms): void
     {
-        if ($rooms < 1&&isset($this->rooms)){
+        if ($rooms < 1 && isset($this->rooms)) {
             echo "количество комнат устанавливается только раз и изменить его нельзя" . PHP_EOL;
+
             return;
         }
-        if ($rooms < 1&&!isset($this->rooms)) {
+        if ($rooms < 1 && !isset($this->rooms)) {
             echo "не удалось указать количество комнат введенные данные некорректные" . PHP_EOL;
             $this->status = false;
+
             return;
         }
         $this->rooms = $rooms;
@@ -73,6 +78,7 @@ abstract class Adverts
     {
         if ($category != "sale" && $category != "rent" && $this->category == null) {
             $this->status = false;
+
             return;
         }
         $this->category = $category;
@@ -83,9 +89,11 @@ abstract class Adverts
         if ($price < 0 && !isset($this->price)) {
             echo "не удалось назначить цену введенные данные некорректные" . PHP_EOL;
             $this->status = false;
+
             return;
-        }elseif ($price < 0 && isset($this->price)){
+        } elseif ($price < 0 && isset($this->price)) {
             echo "не удалось изменить цену введенные данные некорректные" . PHP_EOL;
+
             return;
         }
         $this->price = $price;
@@ -93,18 +101,19 @@ abstract class Adverts
 
     public function setType(string $type): void
     {
-        if(isset($this->type)){
-            echo "тип объекта можно указывать только один раз";
-            return ;
+        if (isset($this->type)) {
+            echo "тип объекта можно указывать только один раз" . PHP_EOL;
+
+            return;
         }
-        if ($type != "dom" && $type != "kvartira"&&!isset($this->type)) {
+        if ($type != "dom" && $type != "kvartira" && !isset($this->type)) {
             echo "тип объекта неправильно указан" . PHP_EOL;
             $this->status = false;
+
             return;
         }
         $this->type = $type;
     }
-
 
     public function getRooms(): int
     {
@@ -116,12 +125,10 @@ abstract class Adverts
         return $this->category;
     }
 
-
     public function getPrice(): int
     {
         return $this->price;
     }
-
 
     public function getType(): string
     {
@@ -132,7 +139,6 @@ abstract class Adverts
     {
         return $this->period;
     }
-
 
     abstract function getTitle();
 }
@@ -145,13 +151,12 @@ class Sale extends Adverts
             return "данные неверны, нужна корректировка" . PHP_EOL;
         }
         $title = "Продам " . $this->getRooms();
-        if ($this->getType() == "dom") {
-            $title .= "-комнатный дом за " . $this->changePriceToString() . PHP_EOL;
-        } elseif ($this->getType() == "kvartira") {
-            $title .= "-комнатную квартиру за " . $this->changePriceToString() . PHP_EOL;
-        }else {
-            $title = "не указан тип объекта" . PHP_EOL;
+        if (strcmp($this->getType(), $this->domType) == 0) {
+            $title = $title . $this->nRoomsDom . $this->changePriceToString() . PHP_EOL;
+        } else {
+            $title = $title . $this->nRoomsKv . $this->changePriceToString() . PHP_EOL;
         }
+
         return $title;
     }
 }
@@ -164,13 +169,12 @@ class Rent extends Adverts
             return "данные неверны, нужна корректировка" . PHP_EOL;
         }
         $title = "Сдам " . $this->getRooms();
-        if ($this->getType() == "dom") {
-            $title .= "-комнатный дом за " . $this->changePriceToString() . $this->getPeriod() . PHP_EOL;
-        } elseif ($this->getType() == "kvartira") {
-            $title .= "-комнатную квартиру за " . $this->changePriceToString() . $this->getPeriod() . PHP_EOL;
+        if (strcmp($this->getType(), $this->domType) == 0) {
+            $title = $title . $this->nRoomsDom . $this->changePriceToString() . $this->getPeriod() . PHP_EOL;
         } else {
-            $title = "не указан тип объекта" . PHP_EOL;
+            $title = $title . $this->nRoomsKv . $this->changePriceToString() . $this->getPeriod() . PHP_EOL;
         }
+
         return $title;
     }
 }

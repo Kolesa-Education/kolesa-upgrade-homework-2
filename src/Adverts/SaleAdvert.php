@@ -7,7 +7,7 @@ class SaleAdvert extends Advert
     public function getTitle(): string
     {
         return implode(' ', [
-            ' - Продам',
+            'Продам',
             $this->getStringifyRoomsCount(),
             $this->getStringifyPrice()
         ]);

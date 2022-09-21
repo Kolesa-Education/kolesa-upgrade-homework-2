@@ -28,7 +28,7 @@ class RentAdvert extends Advert
     public function getTitle(): string
     {
         return implode(' ', [
-            ' - Сдам',
+            'Сдам',
             $this->getStringifyRoomsCount(),
             $this->getStringifyPrice(),
             $this->getStringifyPeriod()

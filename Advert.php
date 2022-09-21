@@ -7,6 +7,7 @@ class Advert extends AdvertAbstract
     private int $price;
     private string $type;
     private int $rooms;
+    private string $period="";
 
     public function __construct(array $arr)
     {
@@ -14,9 +15,16 @@ class Advert extends AdvertAbstract
         $this->price = $arr["price"];
         $this->type = $arr['type'];
         $this->rooms = $arr["rooms"];
+       $this->fmtPeriod();
+
+    }
+    protected function fmtPeriod(){
+        if(array_key_exists('period', $this->arr)){
+            $this->period=$this->arr['period'];
+        }
     }
 
-    protected function FormatPrice(): string
+    protected function formatPrice(): string
     {
         if ($this->price > 9999999) {
             return $this->price / 1000000 . " млн";
@@ -25,7 +33,7 @@ class Advert extends AdvertAbstract
         }
     }
 
-    protected function checkCategory(): string
+    protected function formatCategory(): string
     {
         if (array_search("rent", $this->arr)) {
             return "Сдам";
@@ -34,10 +42,10 @@ class Advert extends AdvertAbstract
         }
     }
 
-    protected function checkPeriod(): string
+    protected function formatPeriod(): string
     {
-        if (array_key_exists("period", $this->arr)) {
-            if ($this->arr['period'] == "month") {
+        if (empty($this->period)) {
+            if ($this->period == "month") {
                 return " в месяц";
             } else {
                 return " в сутки";
@@ -46,7 +54,7 @@ class Advert extends AdvertAbstract
         return "";
     }
 
-    protected function checkType(): string
+    protected function formatType(): string
     {
         if ($this->type == "kvartira") {
             return "квартиру";
@@ -55,7 +63,7 @@ class Advert extends AdvertAbstract
         }
     }
 
-    protected function checkRooms(): string
+    protected function formatRooms(): string
     {
         if ($this->type == "kvartira") {
             return "комнатную";
@@ -66,7 +74,7 @@ class Advert extends AdvertAbstract
 
     public function getTitle(): void
     {
-        $result = $this->checkCategory() . " " . $this->rooms . "-" . $this->checkRooms() . " " . $this->checkType() . " за " . $this->FormatPrice() . $this->checkPeriod();
+        $result = $this->formatCategory() . " " . $this->rooms . "-" . $this->formatCategory() . " " . $this->formatCategory() . " за " . $this->formatPrice() . $this->formatPeriod();
         echo $result . PHP_EOL;
     }
 

@@ -3,13 +3,13 @@
 abstract class AdvertAbstract
 {
 
-    protected abstract function checkCategory();
+    protected abstract function formatCategory();
 
-    protected abstract function checkPeriod();
+    protected abstract function formatPeriod();
 
-    protected abstract function checkType();
+    protected abstract function formatType();
 
-    protected abstract function checkRooms();
+    protected abstract function formatRooms();
 
     public abstract function getTitle();
 

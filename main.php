@@ -1,12 +1,15 @@
 <?php
 
 interface OutPut {
+
     public function getTitle();
     public function getType();
     public function getPrice();
+    
 }
 
-abstract class Advert implements OutPut {
+abstract class Advert implements OutPut
+{
 
     protected $type;
     protected $price;
@@ -62,7 +65,8 @@ abstract class Advert implements OutPut {
 
 }
 
-class Sale extends Advert {
+class Sale extends Advert
+{
 
     public function getTitle(): string {
 
@@ -72,7 +76,8 @@ class Sale extends Advert {
 
 }
 
-class Rent extends Advert {
+class Rent extends Advert
+{
 
     public $period;
 

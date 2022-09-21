@@ -156,9 +156,9 @@ $adverts = [
  ];
 
 foreach ($adverts as $advert) {
-  $advert = AdvertFormatterFactory::create($advert);
+  $advertFormatter = AdvertFormatterFactory::create($advert);
   try {
-    echo $advert->getTitle() . "\n";
+    echo $advertFormatter->getTitle() . "\n";
   } catch (Exception $e){
     echo $e->message . "\n";
   }

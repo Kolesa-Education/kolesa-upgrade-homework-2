@@ -12,19 +12,11 @@ $adverts = [
 ];
 foreach ($adverts as $advert) {
     if ($advert['category'] == 'rent') {
-        try {
             $a = new Rent($advert);
             echo $a->getTitle();
-        } catch (Exception $e) {
-            echo $e;
-        }
     } else if ($advert['category'] == 'sale') {
-        try {
             $a = new Sale($advert);
             echo $a->getTitle();
-        } catch (Exception $e) {
-            echo $e;
-        }
     }
 }
 ?>

@@ -18,7 +18,7 @@ class Advert
         }
     }
 
-    public function category(): string {
+    public function getCategory(): string {
         if ($this->category === "sale") {
             return "Продам";
         } else {
@@ -26,7 +26,7 @@ class Advert
         }
     }
 
-    public function type(): string {
+    public function getType(): string {
         if ($this->type === "dom") {
             return "-комнатный дом за";
         } else if ($this->type === "kvartira") {
@@ -34,13 +34,13 @@ class Advert
         }
     }
 
-    public function price(): string {
+    public function getPrice(): string {
         if ($this->price < 1000) {
             return sprintf($this->price) . " тг";
         }
         if ($this->price < 1000000) {
             $price = $this->price / 1000;
-            return number_format($price, 3, " ") . " тыс.тг";
+            return number_format($price, 3, " ") . " тг";
         }
         if ($this->price < 1000000000) {
             $price = $this->price / 1000000;
@@ -48,21 +48,21 @@ class Advert
         }
     }
 
-    public function period(): string {
-        if ($this->period === 'month') {
-            return 'в месяц';
-        } elseif ($this->period === 'day') {
-            return 'в сутки';
+    public function getPeriod(): string {
+        if ($this->period === "month") {
+            return "в месяц";
+        } if ($this->period === "day") {
+            return "в сутки";
         } else {
-            return '';
+            return "";
         }
     }
 
-    public function gettitle(): string {
-        $category = $this->category();
-        $type = $this->type();
-        $price = $this->price();
-        $period = $this->period();
+    public function getTitle(): string {
+        $category = $this->getCategory();
+        $type = $this->getType();
+        $price = $this->getPrice();
+        $period = $this->getPeriod();
         return "$category $this->rooms$type $price $period";
     }
 }

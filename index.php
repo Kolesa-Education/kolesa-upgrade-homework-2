@@ -11,14 +11,13 @@ $adverts = [
 foreach($adverts as $ad){
     $ad['category'] = ($ad['category'] == "sale") ? "Продам" : "Сдам";
     $ad['type'] = ($ad['type'] == "dom") ? "дом" : "квартиру";
-    $objAdvert = new AdvertHome($ad['rooms'], $ad['category'], $ad['price'], $ad['type']);
-    echo $objAdvert->getTitle();
-        if (array_key_exists('period', $ad)){
-            $ad['period'] = ($ad['period'] == "month") ? "месяц" : "сутки";
-            $objAdvert->setPeriod($ad['period']);
-            echo $objAdvert->getPeriod();
-        }
-        echo "<br>\n";
-    } 
-?>
-
+    if (array_key_exists('period', $ad)){
+        $ad['period'] = ($ad['period'] == "month") ? "месяц" : "сутки";
+        $objAdvertRent = new AdvertRent($ad['rooms'], $ad['category'], $ad['price'], $ad['type']);
+        $objAdvertRent->setPeriod($ad['period']);
+        echo $objAdvertRent->getTitle()."<br>\n";
+    } else {
+        $objAdvertSale = new AdvertSale($ad['rooms'], $ad['category'], $ad['price'], $ad['type']);
+        echo $objAdvertSale->getTitle()."<br>\n";
+    }
+}

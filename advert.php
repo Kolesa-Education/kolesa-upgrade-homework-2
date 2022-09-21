@@ -15,7 +15,6 @@ abstract class Advert
         $this->price=$price;
         $this->category=$category;
     }
-
     public function getRooms()
     {
         return $this->type=="дом" ? $this->rooms."-комнатный " : $this->rooms."-комнатную ";
@@ -36,28 +35,36 @@ abstract class Advert
         return $this->category;
     }
 }
-
 interface Period
 {
-    public function getPeriod();
     public function setPeriod($period);
+    public function getPeriod();
 }
 
-class AdvertHome extends Advert implements Period
-{
-    protected $period;
-
-    public function getPeriod()
+class AdvertRent extends Advert implements Period
     {
-        return $this->period;
+        protected $period;
+    
+        public function setPeriod($period)
+        {
+            $this->period=$period;
+        }
+    
+        public function getPeriod()
+        {
+            return $this->period;
+        }
+    
+        public function getTitle()
+        {
+            return " • ".$this->getCategory()." ".$this->getRooms().$this->getType()." за ".$this->getPrice()." тг в ".$this->getPeriod();
+        }
     }
-
-    public function setPeriod($period)
+    
+    class AdvertSale extends Advert
     {
-        return $this->period=$period;
+        public function getTitle()
+        {
+            return " • ".$this->getCategory()." ".$this->getRooms().$this->getType()." за ".$this->getPrice()." тг";
+        }
     }
-    public function getTitle()
-    {
-        return " • ".$this->getCategory()." ".$this->getRooms().$this->getType()." за ".$this->getPrice()." тг в ";
-    }
-}

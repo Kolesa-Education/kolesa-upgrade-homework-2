@@ -8,14 +8,6 @@ abstract class Category
 
     public function formatHouseOrFlatTitle(LivingSpace $livingSpace): string
     {
-        if ($livingSpace instanceof House) {
-            $landArea = House::getLandArea();
-            $text = "комнатный дом с участком {$landArea} кв.м";
-        } else {
-            $floor = Flat::getFloor();
-            $text = "комнатную квартиру на {$floor} этаже";
-        }
-
-        return $text;
+        return $livingSpace->formatTitle();
     }
 }

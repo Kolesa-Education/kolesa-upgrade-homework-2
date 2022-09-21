@@ -7,21 +7,16 @@ namespace Advert;
 abstract class LivingSpace
 {
     private int $rooms;
-    private string $type;
 
-    public function __construct(int $rooms, string $type)
+    public abstract function formatTitle(): string;
+
+    public function __construct(int $rooms)
     {
         $this->rooms = $rooms;
-        $this->type = $type;
     }
 
     public function getRooms(): int
     {
         return $this->rooms;
-    }
-
-    public function getType(): string
-    {
-        return $this->type;
     }
 }

@@ -6,16 +6,16 @@ namespace Advert;
 
 class Flat extends LivingSpace
 {
-    private static int $floor;
+    protected int $floor;
 
     public function __construct(int $rooms, int $floor = 1)
     {
-        parent::__construct($rooms, 'kvartira');
-        self::$floor = $floor;
+        parent::__construct($rooms);
+        $this->floor = $floor;
     }
 
-    public static function getFloor(): int
+    public function formatTitle(): string
     {
-        return self::$floor;
+        return "комнатную квартиру на {$this->floor} этаже";
     }
 }

@@ -1,80 +1,9 @@
 <?php
 
-// The Second app for learning OOP
-// Made on Kolesa Backend Upgrade 2022
-
-
-interface Ad {
-    // Made interface for required methods implementing
-    public function getCategory(): string;
-    public function getAdType(): string;
-    public function getPrice(): int;
-}
-
-interface RealEstate {
-    public function getRooms(): int;
-}
-
-abstract class Advert implements Ad, RealEstate {
-    // Abstract base class with interface methods implementation
-    protected $type;
-    protected $rooms = 1;
-    protected $price;
-
-    function __construct(string $type, int $rooms, int $price) {
-        $this->type = $type;
-        $this->rooms = $rooms;
-        $this->price = $price;
-    }
-    
-    public function getCategory(): string {
-        return $this->category;
-    }
-
-    public function getAdType(): string {
-        return $this->type;
-    }
-
-    public function getPrice(): int {
-        return $this->price;
-    }
-
-    public function getRooms(): int {
-        return $this->rooms;
-    }
-}
-
-class SaleAd extends Advert {
-    // Child class inherited base abstract class and set the category
-    public function __construct(string $type, int $rooms, int $price) {
-        parent::__construct($type, $rooms, $price);
-        $this->category = 'sale';
-    }
-
-    public function getCategory(): string {
-        return $this->category;
-    }
-}
-
-class RentAd extends Advert {
-    // Child class inherited base abstract class
-    // Sets the category, extends constructor and implement new method
-    protected $period;
-
-    public function __construct(string $type, int $rooms, int $price, string $period) {
-        parent::__construct($type, $rooms, $price);
-        $this->category = 'rent';
-        $this->period = $period;
-    }
-
-    public function getCategory(): string {
-        return $this->category;
-    }
-
-    public function getPeriod(): string {
-        return $this->period;
-    }
-}
+spl_autoload_register(function($className) {
+	$fn = 'lib/' . $className . '/' . $className . '.php';
+	if (file_exists($fn)) require $fn; 
+});
 
 /**
  * @param $array array that will be checked

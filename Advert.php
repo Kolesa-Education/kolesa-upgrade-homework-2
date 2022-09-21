@@ -8,14 +8,12 @@ class Advert extends AdvertAbstract
     private string $type;
     private int $rooms;
 
-
     public function __construct(array $arr)
     {
         $this->arr = $arr;
         $this->price = $arr["price"];
         $this->type = $arr['type'];
         $this->rooms = $arr["rooms"];
-
     }
 
     protected function FormatPrice(): string

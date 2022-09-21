@@ -7,6 +7,9 @@ use Exception;
 
 class AdvertFactory
 {
+    /**
+     * @throws Exception
+     */
     public function createAdvert(array $advert): Advert
     {
             if (!is_numeric($advert['price'])) {

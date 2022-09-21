@@ -22,7 +22,7 @@ class Advert
         $this->type = $type;
     }
 
-    private function getCategory()
+    private function getCategory(): string
     {
         if ($this->category == "sale") {
             return "Продам";
@@ -31,7 +31,7 @@ class Advert
         }
     }
 
-    private function getType()
+    private function getType(): string
     {
         if ($this->type == "dom") {
             return "дом";
@@ -40,7 +40,7 @@ class Advert
         }
     }
 
-    private function getEnds()
+    private function getEnds(): string
     {
         if ($this->type == "dom") {
             return "ый";
@@ -49,7 +49,7 @@ class Advert
         }
     }
 
-    private function parsePrice(int $size)
+    private function parsePrice(int $size): mixed
     {
         if ((strlen($this->price) > 6)) {
             $postfix = "млн";
@@ -65,7 +65,7 @@ class Advert
         }
     }
 
-    public function getTitle()
+    public function getTitle(): mixed
     {
         return $this->getCategory() . " " . $this->rooms . "-комнатн" . $this->getEnds() . " " . $this->getType()  . " " . "за"  . " " . $this->parsePrice($this->price) . " " . "тг" . "\n";
     }

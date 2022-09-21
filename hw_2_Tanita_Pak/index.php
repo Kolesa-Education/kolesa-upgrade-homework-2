@@ -74,6 +74,6 @@ class Advert
 for ($i = 0; $i < count($adverts); $i++) {
     $new_arr = $adverts[$i];
     $values = array_values($new_arr);
-    $a = new Advert($values[0], $values[1], $values[2], $values[3]);
+    $a = new Advert($adverts[$i]["rooms"], $adverts[$i]["category"], $adverts[$i]["price"], $adverts[$i]["type"]);
     echo $a->getTitle();
 }

@@ -42,7 +42,7 @@
       </CommandLine>
       <method v="2" />
     </configuration>
-    <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" nameIsGenerated="true" path="$PROJECT_DIR$/kolesa-upgrade-homework-2/index.php">
+    <configuration name="index.php" type="PhpLocalRunConfigurationType" factoryName="PHP Console" nameIsGenerated="true" path="$PROJECT_DIR$/index.php">
       <CommandLine>
         <PhpTestInterpreterSettings>
           <option name="interpreterName" value="PHP" />

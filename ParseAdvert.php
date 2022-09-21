@@ -2,7 +2,6 @@
 require_once "Advert.php";
 require_once "RentAdvert.php";
 require_once "SellAdvert.php";
-require_once "CreatetAdvert.php";
 
 
 
@@ -49,13 +48,13 @@ function cut_num($num) {
         else if ($num > 1000000) return round(($num / 1000000), 1) . ' миллион';
         else if ($num > 1000) return round(($num / 1000), 1) . ' тысяч';
     }
-    return strval(number_format($num, thousands_separator: ' '));
+    return $num;
 }
 
 function create_adds($adv) {
     $addCategory = $adv->getCategory();
     $addRooms = $adv->getRooms();
-    $addType = $adv->getAdType();
+    $addType = $adv->getType();
     $addPrice = $adv->getPrice();
 
 
@@ -100,9 +99,9 @@ $adverts = [
     ['rooms' => 1, 'category' => 'rent', 'price' => 15000, 'type' => 'kvartira', 'period' => 'day'],
 ];
 
-//if (isset($adverts)) {
-//    exit('К сожалению произошла ошибка!');
-//}
+if (isset($adverts)) {
+    exit('К сожалению произошла ошибка!');
+}
 
 $adv_obj = parse($adverts);
 

@@ -37,11 +37,6 @@ $adverts = [
     ['rooms' => 1, 'category' => 'rent', 'price' => 15000, 'type' => 'kvartira', 'period' => 'day'],
 ];
 foreach ($adverts as $advert) {
-    if ($advert['category'] == 'sale') {
-        $advert = new Advert($advert['rooms'], $advert['category'], $advert['price'], $advert['type'], NULL);
-        echo $advert->getTitle();
-    } else {
-        $advert = new Advert($advert['rooms'], $advert['category'], $advert['price'], $advert['type'], $advert['period']);
-        echo $advert->getTitle();
-    }
+    $advert = new Advert($advert['rooms'], $advert['category'], $advert['price'], $advert['type'], $advert['period'] ?? NULL);
+    echo $advert->getTitle();
 }

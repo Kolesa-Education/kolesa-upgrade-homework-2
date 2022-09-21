@@ -2,6 +2,11 @@
 
 namespace AppClasses\Catalog;
 
+/**
+ * Класс Home представлеят класс обьктов которые представляют собой дом. 
+ * 
+ * Можно расширить (добавить новые аттрибуты и изменять getPropertyMsg()) на свое усмотрение
+ */
 class Home extends Residency implements ObjectToAdvert
 {
 

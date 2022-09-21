@@ -2,7 +2,10 @@
 
 namespace AppClasses\Advert\Tags;
 
-
+/**
+ * PeriodTag вспомогательные класс для представления ценика. 
+ * обеспечивает эластичность изменения стоимости в заголовки объявлений.
+ */
 class PriceTag
 {
     private int $price;

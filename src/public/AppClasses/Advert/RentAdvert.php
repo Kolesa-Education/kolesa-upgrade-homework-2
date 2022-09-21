@@ -4,6 +4,13 @@ namespace AppClasses\Advert;
 
 use \AppClasses\Catalog\ObjectToAdvert as ObjectToAdvert;
 
+/**
+ * RentAdvert дочерный класс абстрактого класса Advert. 
+ * 
+ * RentAdvert представляетс собой класс обьектов который сдается на
+ * определенный период (имеет тег period класса PeriodTag).
+ * 
+ */
 class RentAdvert extends Advert
 {
 

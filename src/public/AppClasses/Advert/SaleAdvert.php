@@ -4,6 +4,11 @@ namespace AppClasses\Advert;
 
 use \AppClasses\Catalog\ObjectToAdvert as ObjectToAdvert;
 
+/**
+ * SaleAdvert дочерный класс абстрактого класса Advert. 
+ * 
+ * Saledvert представляетс собой класс обьектов который продается.
+ */
 class SaleAdvert extends Advert
 {
 

@@ -2,6 +2,12 @@
 
 namespace AppClasses;
 
+/**
+ * Класс Distributor распределяет элементы заданного массива 
+ * в зависимости от категории и типа рекламного объекта.
+ * 
+ * Иммет метод getAdverts() который возвращает уже распределенные рекламные обькты.
+ */
 class Distributor
 {
     protected $advertObjects = array();

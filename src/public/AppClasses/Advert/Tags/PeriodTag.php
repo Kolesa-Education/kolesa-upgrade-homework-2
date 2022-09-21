@@ -2,6 +2,10 @@
 
 namespace AppClasses\Advert\Tags;
 
+/**
+ * PeriodTag вспомогательные класс для представления тег периода. 
+ * обеспечивает эластичность изменения периодичности в заголовки объявлений.
+ */
 class PeriodTag
 {
     private string $period;

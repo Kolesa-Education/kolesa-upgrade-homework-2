@@ -7,6 +7,7 @@ abstract class Advert
     protected $price;
     protected $category;
 
+    abstract public function getTitle();
     public function __construct($rooms, $category, $price, $type)
     {
         $this->rooms=$rooms;
@@ -38,29 +39,25 @@ abstract class Advert
 
 interface Period
 {
-    public function getPeriod($period);
+    public function getPeriod();
+    public function setPeriod($period);
 }
 
-class AdvertRent extends Advert implements Period
+class AdvertHome extends Advert implements Period
 {
     protected $period;
 
-    public function getPeriod($period)
+    public function getPeriod()
+    {
+        return $this->period;
+    }
+
+    public function setPeriod($period)
     {
         return $this->period=$period;
     }
-
     public function getTitle()
     {
         return " • ".$this->getCategory()." ".$this->getRooms().$this->getType()." за ".$this->getPrice()." тг в ";
     }
 }
-
-class AdvertSale extends Advert
-{
-    public function getTitle()
-    {
-        return " • ".$this->getCategory()." ".$this->getRooms().$this->getType()." за ".$this->getPrice()." тг";
-    }
-}
-?>

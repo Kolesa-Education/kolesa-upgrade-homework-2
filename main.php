@@ -12,8 +12,14 @@ $adverts = [
 // $myobj = new Advert(5, 'sale', 55000000, 'dom', 'month');
 
 // or you can pass dictionary
-foreach ($adverts as $advert) {
-    $ad_obj = new Advert($advert);
+foreach ($adverts as $ad) {
+    if (isset($ad['period'])) {
+        $ad_obj = new Advert($ad['rooms'], $ad['category'], $ad['price'], $ad['type'], $ad['period'],);
+    }
+    else {
+        $ad_obj = new Advert($ad['rooms'], $ad['category'], $ad['price'], $ad['type']);
+    }
+    
     echo $ad_obj->getTitle();
 }
 

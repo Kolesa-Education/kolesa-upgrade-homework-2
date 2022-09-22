@@ -9,7 +9,7 @@ abstract class Advert {
   private $price;
   private $type;
 
-  public function __construct($rooms, $category, $price, $type)
+  public function __construct(int $rooms, string $category, int $price, string $type)
   {
     $this->setRooms($rooms);
     $this->setCategory($category);
@@ -17,17 +17,17 @@ abstract class Advert {
     $this->setType($type);
   }
 
-  public function setRooms($rooms) : void
+  public function setRooms(int $rooms) : void
   {
     $this->rooms = $rooms;
   }
 
-  public function getRooms() : string
+  public function getRooms() : int
   {
     return $this->rooms;
   }
 
-  public function setCategory($category) : void
+  public function setCategory(string $category) : void
   {
     $this->category = $category;
   }
@@ -37,17 +37,17 @@ abstract class Advert {
     return $this->category;
   }
 
-  public function setPrice($price) : void
+  public function setPrice(int $price) : void
   {
     $this->price = $price;
   }
 
-  public function getPrice() : string
+  public function getPrice() : int
   {
       return $this->price;
   }
 
-  public function setType($type) : void
+  public function setType(string $type) : void
   {
     $this->type = $type;
   }
@@ -56,7 +56,7 @@ abstract class Advert {
   {
     return $this->type;
   }
-
+  
   public function getFormattedPrice($price) : string
   {
     switch($price) {
@@ -86,10 +86,6 @@ abstract class Advert {
 
 class SaleAdvertFormatter extends Advert implements AdvertFormatter 
 {
-  public function __construct($rooms, $category, $price, $type)
-  {
-    parent::__construct($rooms, $category, $price, $type);
-  }
   public function getTitle() : string
   {
     return sprintf("Продам %s-%s за %s.",
@@ -135,19 +131,19 @@ class RentAdvertFormatter extends Advert implements AdvertFormatter
   }
 }
 
-abstract class AdvertFormatterFactory {
-  public static function create($advert) : object
+class AdvertFormatterFactory {
+  public static function create($advert) : AdvertFormatter
   {
-    switch($advert["category"]) {
-      case "sale":
-        return new SaleAdvertFormatter($advert["rooms"], $advert["category"], $advert["price"], $advert["type"]);
-      case "rent":
-        return new RentAdvertFormatter($advert["rooms"], $advert["category"], $advert["price"], $advert["type"], $advert["period"]);
-      default:
-        throw new Exception("The category does not exist.");
+    if ($advert["category"] === "sale") {
+      return new SaleAdvertFormatter($advert["rooms"], $advert["category"], $advert["price"], $advert["type"]);
+    } else {
+      return new RentAdvertFormatter($advert["rooms"], $advert["category"], $advert["price"], $advert["type"], $advert["period"]);
     }
   }
 }
+
+class MyException extends Exception { }
+
 $adverts = [
   ['rooms' => 5, 'category' => 'sale', 'price' => 55000000, 'type' => 'dom'],
   ['rooms' => 2, 'category' => 'sale', 'price' => 21500000, 'type' => 'kvartira'],
@@ -157,9 +153,5 @@ $adverts = [
 
 foreach ($adverts as $advert) {
   $advertFormatter = AdvertFormatterFactory::create($advert);
-  try {
-    echo $advertFormatter->getTitle() . "\n";
-  } catch (Exception $e){
-    echo $e->message . "\n";
-  }
+  echo $advertFormatter->getTitle() . "\n";
 }

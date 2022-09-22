@@ -18,23 +18,19 @@ class Advert
         }
     }
 
-    public function getCategory(): string {
+    private function getCategory(): string {
         if ($this->category === "sale") {
             return "Продам";
-        } else {
-            return "Сдам";
-        }
+        } return "Сдам";
     }
 
-    public function getType(): string {
+    private function getType(): string {
         if ($this->type === "dom") {
             return "-комнатный дом за";
-        } else if ($this->type === "kvartira") {
-            return "-комнатную квартиру за";
-        }
+        } return "-комнатную квартиру за";
     }
 
-    public function getPrice(): string {
+    private function getPrice(): string {
         if ($this->price < 1000) {
             return sprintf($this->price) . " тг";
         }
@@ -48,7 +44,7 @@ class Advert
         }
     }
 
-    public function getPeriod(): string {
+    private function getPeriod(): string {
         if ($this->period === "month") {
             return "в месяц";
         } if ($this->period === "day") {
